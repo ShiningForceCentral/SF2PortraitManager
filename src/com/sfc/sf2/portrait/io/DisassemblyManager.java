@@ -63,6 +63,7 @@ public class DisassemblyManager {
                     byte[] paletteData = new byte[32];
                     System.arraycopy(data, paletteOffset, paletteData, 0, paletteData.length);
                     palette = PaletteDecoder.parsePalette(paletteData);
+                    palette[0] = new Color(255, 255, 255, 0);
                     int graphicsOffset = paletteOffset + 32;
                     byte[] tileData = new byte[data.length-graphicsOffset];
                     System.arraycopy(data, graphicsOffset, tileData, 0, tileData.length);

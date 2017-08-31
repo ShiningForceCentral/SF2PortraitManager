@@ -25,13 +25,15 @@ public class PortraitTableModel extends AbstractTableModel {
         super();
         tableData = new String[64][];
         int i = 0;
-        while(i<altTiles.length){
-            tableData[i] = new String[4];
-            tableData[i][0] = Integer.toString(altTiles[i][0]);
-            tableData[i][1] = Integer.toString(altTiles[i][1]);
-            tableData[i][2] = Integer.toString(altTiles[i][2]);
-            tableData[i][3] = Integer.toString(altTiles[i][3]);
-            i++;
+        if(altTiles!=null){
+            while(i<altTiles.length){
+                tableData[i] = new String[4];
+                tableData[i][0] = Integer.toString(altTiles[i][0]);
+                tableData[i][1] = Integer.toString(altTiles[i][1]);
+                tableData[i][2] = Integer.toString(altTiles[i][2]);
+                tableData[i][3] = Integer.toString(altTiles[i][3]);
+                i++;
+            }
         }
         while(i<tableData.length){
             tableData[i] = new String[4];

@@ -430,7 +430,7 @@
                                     </Component>
                                     <Component class="javax.swing.JLabel" name="jLabel2">
                                       <Properties>
-                                        <Property name="text" type="java.lang.String" value="&lt;html&gt;Select a &quot;portraitXX.bin&quot; files.&lt;br/&gt;Typical disassembly path : data/graphics/portraits/&lt;/html&gt;"/>
+                                        <Property name="text" type="java.lang.String" value="&lt;html&gt;Select a portrait file.&lt;br/&gt;Typical disassembly path : data/graphics/portraits/&lt;/html&gt;"/>
                                       </Properties>
                                     </Component>
                                     <Component class="javax.swing.JTextField" name="jTextField9">
@@ -502,7 +502,7 @@
                                                   <Component id="jButton12" min="-2" max="-2" attributes="0"/>
                                                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <EmptySpace max="32767" attributes="0"/>
+                                              <EmptySpace pref="36" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                     </DimensionLayout>
@@ -539,7 +539,7 @@
                                     </Component>
                                     <Component class="javax.swing.JLabel" name="jLabel3">
                                       <Properties>
-                                        <Property name="text" type="java.lang.String" value="&lt;html&gt;Select a PNG file.&lt;br&gt;Required PNG Format : 4BPP / 16 indexed colors.&lt;/html&gt;"/>
+                                        <Property name="text" type="java.lang.String" value="&lt;html&gt;Select a PNG file.&lt;br&gt;Required PNG Format : 4BPP / 16 indexed colors.&lt;br/&gt;Transparency color at index 0.&lt;/html&gt;"/>
                                       </Properties>
                                     </Component>
                                   </SubComponents>
@@ -713,7 +713,7 @@
                                                   <Component id="jButton13" min="-2" max="-2" attributes="0"/>
                                                   <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                                               </Group>
-                                              <EmptySpace max="32767" attributes="0"/>
+                                              <EmptySpace pref="35" max="32767" attributes="0"/>
                                           </Group>
                                       </Group>
                                     </DimensionLayout>
@@ -726,7 +726,7 @@
                                     </Component>
                                     <Component class="javax.swing.JTextField" name="jTextField15">
                                       <Properties>
-                                        <Property name="text" type="java.lang.String" value=".\u005cportrait00.png" containsInvalidXMLChars="true"/>
+                                        <Property name="text" type="java.lang.String" value="E:\u005cSEGADEV\u005cGITHUB\u005cSF2DISASM\u005cdisasm\u005cdata\u005cgraphics\u005cportraits\u005cportrait00.png" containsInvalidXMLChars="true"/>
                                       </Properties>
                                       <Events>
                                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField15ActionPerformed"/>
@@ -750,7 +750,7 @@
                                     </Component>
                                     <Component class="javax.swing.JLabel" name="jLabel9">
                                       <Properties>
-                                        <Property name="text" type="java.lang.String" value="&lt;html&gt;Creates a new file, or overwrites existing file.&lt;br&gt;Exported PNG Format : 4BPP / 16 indexed colors.&lt;/html&gt;"/>
+                                        <Property name="text" type="java.lang.String" value="&lt;html&gt;Creates a new file, or overwrites existing file.&lt;br&gt;Exported PNG Format : 4BPP / 16 indexed colors.&lt;br/&gt;Transparency color at index 0.&lt;/html&gt;"/>
                                       </Properties>
                                     </Component>
                                   </SubComponents>

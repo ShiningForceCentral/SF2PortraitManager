@@ -281,7 +281,7 @@ public class MainEditor extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("<html>Select a \"portraitXX.bin\" files.<br/>Typical disassembly path : data/graphics/portraits/</html>");
+        jLabel2.setText("<html>Select a portrait file.<br/>Typical disassembly path : data/graphics/portraits/</html>");
 
         jTextField9.setText("E:\\SEGADEV\\GITHUB\\SF2DISASM\\disasm\\data\\graphics\\portraits\\portrait00.bin");
         jTextField9.addActionListener(new java.awt.event.ActionListener() {
@@ -357,7 +357,7 @@ public class MainEditor extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("<html>Select a PNG file.<br>Required PNG Format : 4BPP / 16 indexed colors.</html>");
+        jLabel3.setText("<html>Select a PNG file.<br>Required PNG Format : 4BPP / 16 indexed colors.<br/>Transparency color at index 0.</html>");
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -390,7 +390,7 @@ public class MainEditor extends javax.swing.JFrame {
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton12)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("PNG", jPanel9);
@@ -474,7 +474,7 @@ public class MainEditor extends javax.swing.JFrame {
 
         jLabel15.setText("PNG Files :");
 
-        jTextField15.setText(".\\portrait00.png");
+        jTextField15.setText("E:\\SEGADEV\\GITHUB\\SF2DISASM\\disasm\\data\\graphics\\portraits\\portrait00.png");
         jTextField15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField15ActionPerformed(evt);
@@ -495,7 +495,7 @@ public class MainEditor extends javax.swing.JFrame {
             }
         });
 
-        jLabel9.setText("<html>Creates a new file, or overwrites existing file.<br>Exported PNG Format : 4BPP / 16 indexed colors.</html>");
+        jLabel9.setText("<html>Creates a new file, or overwrites existing file.<br>Exported PNG Format : 4BPP / 16 indexed colors.<br/>Transparency color at index 0.</html>");
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
@@ -527,7 +527,7 @@ public class MainEditor extends javax.swing.JFrame {
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton13)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("PNG", jPanel14);
@@ -639,6 +639,8 @@ public class MainEditor extends javax.swing.JFrame {
         jPanel2.setSize(portraitLayout.getWidth(), portraitLayout.getHeight());
         jPanel2.revalidate();
         jPanel2.repaint();  
+        jTable1.setModel(new PortraitTableModel(portraitManager.getPortrait().getEyeTiles()));
+        jTable2.setModel(new PortraitTableModel(portraitManager.getPortrait().getMouthTiles()));
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed

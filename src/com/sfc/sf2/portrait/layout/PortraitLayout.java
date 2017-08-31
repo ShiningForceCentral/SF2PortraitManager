@@ -42,12 +42,8 @@ public class PortraitLayout extends JPanel {
             imageHeight+=8;
         }
         BufferedImage image;
-        if(pngExport){
-            IndexColorModel icm = buildIndexColorModel(tiles[0].getPalette());
-            image = new BufferedImage(tilesPerRow*8, imageHeight , BufferedImage.TYPE_BYTE_BINARY, icm);
-        } else{
-            image = new BufferedImage(tilesPerRow*8, imageHeight , BufferedImage.TYPE_INT_RGB);
-        }
+        IndexColorModel icm = buildIndexColorModel(tiles[0].getPalette());
+        image = new BufferedImage(tilesPerRow*8, imageHeight , BufferedImage.TYPE_BYTE_BINARY, icm);
         Graphics graphics = image.getGraphics();     
             for(int i=0;i<8;i++){
                 for(int j=0;j<8;j++){
@@ -66,7 +62,7 @@ public class PortraitLayout extends JPanel {
         greens[0] = (byte)0xFF;
         blues[0] = (byte)0xFF;
         alphas[0] = 0;
-        for(int i=0;i<16;i++){
+        for(int i=1;i<16;i++){
             reds[i] = (byte)colors[i].getRed();
             greens[i] = (byte)colors[i].getGreen();
             blues[i] = (byte)colors[i].getBlue();

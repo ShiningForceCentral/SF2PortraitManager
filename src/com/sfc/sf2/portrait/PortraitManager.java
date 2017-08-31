@@ -21,7 +21,7 @@ public class PortraitManager {
     private PaletteManager paletteManager = new PaletteManager();
     private GraphicsManager graphicsManager = new GraphicsManager();
     private Tile[] tiles;
-    private Portrait portrait;
+    private Portrait portrait = new Portrait();
        
     public void importDisassembly(String filePath){
         System.out.println("com.sfc.sf2.portrait.PortraitManager.importDisassembly() - Importing disassembly ...");
@@ -40,7 +40,7 @@ public class PortraitManager {
     
     public void importPng(String filepath){
         System.out.println("com.sfc.sf2.portrait.PortraitManager.importPng() - Importing PNG ...");
-        portrait = PngManager.importPng(filepath);
+        portrait.setTiles(PngManager.importPng(filepath).getTiles());
         this.tiles = portrait.getTiles();
         graphicsManager.setTiles(portrait.getTiles());
         System.out.println("com.sfc.sf2.portrait.PortraitManager.importPng() - PNG imported.");
