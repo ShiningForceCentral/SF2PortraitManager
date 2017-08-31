@@ -35,8 +35,8 @@ public class DisassemblyManager {
         
         Portrait portrait = new Portrait();
         try{
-            Tile[] tiles = null;
-            Color[] palette = null;
+            Tile[] tiles;
+            Color[] palette;
             Path path = Paths.get(filepath);
             if(path.toFile().exists()){
                 byte[] data = Files.readAllBytes(path);
@@ -80,43 +80,45 @@ public class DisassemblyManager {
         return portrait;
     }
     
-    public static void exportDisassembly(Portrait portrait, String basepath){
-        System.out.println("com.sfc.sf2.background.io.DisassemblyManager.exportDisassembly() - Exporting disassembly ...");
- /*       try {
-            for(Portrait background : portrait){
-                String index = String.format("%02d", background.getIndex());
-                String filePath = basepath + System.getProperty("file.separator") + BASE_FILENAME.replace("XX.bin", index+".bin");
-                Tile[] tileset1 = new Tile[192];
-                Tile[] tileset2 = new Tile[192];
-                System.arraycopy(background.getTiles(),0,tileset1,0,192);
-                System.arraycopy(background.getTiles(),192,tileset2,0,192);
-                StackGraphicsEncoder.produceGraphics(tileset1);
-                byte[] newTileset1 = StackGraphicsEncoder.getNewGraphicsFileBytes();
-                StackGraphicsEncoder.produceGraphics(tileset2);
-                byte[] newTileset2 = StackGraphicsEncoder.getNewGraphicsFileBytes(); 
-                byte[] newBackgroundFileBytes = new byte[2+2+2+32+newTileset1.length+newTileset2.length];
-                short tileset2Offset = (short) (newTileset1.length + 6 + 32 - 2);
-                newBackgroundFileBytes[0] = 0;
-                newBackgroundFileBytes[1] = 0x26;
-                newBackgroundFileBytes[2] = (byte)((tileset2Offset>>8)&0xFF);
-                newBackgroundFileBytes[3] = (byte)(tileset2Offset&0xFF);
-                newBackgroundFileBytes[4] = 0;
-                newBackgroundFileBytes[5] = 2;
-                PaletteEncoder.producePalette(tileset1[0].getPalette());
+    public static void exportDisassembly(Portrait portrait, String filepath){
+        System.out.println("com.sfc.sf2.portrait.io.DisassemblyManager.exportDisassembly() - Exporting disassembly ...");
+        try{
+                byte[] eyeTiles = new byte[2+portrait.getEyeTiles().length*4];
+                eyeTiles[0] = 0;
+                eyeTiles[1] = (byte)(portrait.getEyeTiles().length & 0xFF);
+                for(int i=0;i<portrait.getEyeTiles().length;i++){
+                    eyeTiles[2+i*4+0] = (byte)(portrait.getEyeTiles()[i][0] & 0xFF);
+                    eyeTiles[2+i*4+1] = (byte)(portrait.getEyeTiles()[i][1] & 0xFF);
+                    eyeTiles[2+i*4+2] = (byte)(portrait.getEyeTiles()[i][2] & 0xFF);
+                    eyeTiles[2+i*4+3] = (byte)(portrait.getEyeTiles()[i][3] & 0xFF);
+                }
+                byte[] mouthTiles = new byte[2+portrait.getMouthTiles().length*4];
+                mouthTiles[0] = 0;
+                mouthTiles[1] = (byte)(portrait.getMouthTiles().length & 0xFF);
+                for(int i=0;i<portrait.getMouthTiles().length;i++){
+                    mouthTiles[2+i*4+0] = (byte)(portrait.getMouthTiles()[i][0] & 0xFF);
+                    mouthTiles[2+i*4+1] = (byte)(portrait.getMouthTiles()[i][1] & 0xFF);
+                    mouthTiles[2+i*4+2] = (byte)(portrait.getMouthTiles()[i][2] & 0xFF);
+                    mouthTiles[2+i*4+3] = (byte)(portrait.getMouthTiles()[i][3] & 0xFF);
+                }
+                PaletteEncoder.producePalette(portrait.getTiles()[0].getPalette());
                 byte[] palette = PaletteEncoder.getNewPaletteFileBytes();
-                System.arraycopy(palette, 0, newBackgroundFileBytes, 6, palette.length);
-                System.arraycopy(newTileset1, 0, newBackgroundFileBytes, 0x26, newTileset1.length);
-                System.arraycopy(newTileset2, 0, newBackgroundFileBytes, 0x26+newTileset1.length, newTileset2.length);
-                Path graphicsFilePath = Paths.get(filePath);
-                Files.write(graphicsFilePath,newBackgroundFileBytes);
-                System.out.println(newBackgroundFileBytes.length + " bytes into " + graphicsFilePath);                
-            }
+                StackGraphicsEncoder.produceGraphics(portrait.getTiles());
+                byte[] tileset = StackGraphicsEncoder.getNewGraphicsFileBytes();
+                byte[] newPortraitFileBytes = new byte[eyeTiles.length+mouthTiles.length+palette.length+tileset.length];
+                System.arraycopy(eyeTiles, 0, newPortraitFileBytes, 0, eyeTiles.length);
+                System.arraycopy(mouthTiles, 0, newPortraitFileBytes, eyeTiles.length, mouthTiles.length);
+                System.arraycopy(palette, 0, newPortraitFileBytes, eyeTiles.length+mouthTiles.length, palette.length);
+                System.arraycopy(tileset, 0, newPortraitFileBytes, eyeTiles.length+mouthTiles.length+palette.length, tileset.length);
+                Path graphicsFilePath = Paths.get(filepath);
+                Files.write(graphicsFilePath,newPortraitFileBytes);
+                System.out.println(newPortraitFileBytes.length + " bytes into " + graphicsFilePath);                
         } catch (Exception ex) {
             Logger.getLogger(DisassemblyManager.class.getName()).log(Level.SEVERE, null, ex);
             ex.printStackTrace();
             System.out.println(ex);
-        } */           
-        System.out.println("com.sfc.sf2.background.io.DisassemblyManager.exportDisassembly() - Disassembly exported.");        
+        }  
+        System.out.println("com.sfc.sf2.portrait.io.DisassemblyManager.exportDisassembly() - Disassembly exported.");        
     }     
     
     private static short getNextWord(byte[] data, int cursor){

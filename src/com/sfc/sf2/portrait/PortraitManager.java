@@ -22,14 +22,6 @@ public class PortraitManager {
     private GraphicsManager graphicsManager = new GraphicsManager();
     private Tile[] tiles;
     private Portrait portrait;
-
-    public Tile[] getTiles() {
-        return tiles;
-    }
-
-    public void setTiles(Tile[] tiles) {
-        this.tiles = tiles;
-    }
        
     public void importDisassembly(String filePath){
         System.out.println("com.sfc.sf2.portrait.PortraitManager.importDisassembly() - Importing disassembly ...");
@@ -58,5 +50,21 @@ public class PortraitManager {
         System.out.println("com.sfc.sf2.portrait.PortraitManager.exportPng() - Exporting PNG ...");
         PngManager.exportPng(portrait, filepath);
         System.out.println("com.sfc.sf2.portrait.PortraitManager.exportPng() - PNG exported.");       
+    }
+
+    public Portrait getPortrait() {
+        return portrait;
+    }
+
+    public void setPortrait(Portrait portrait) {
+        this.portrait = portrait;
+    }
+
+    public Tile[] getTiles() {
+        return tiles;
+    }
+
+    public void setTiles(Tile[] tiles) {
+        this.tiles = tiles;
     }
 }
