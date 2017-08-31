@@ -74,10 +74,10 @@ public class DisassemblyManager {
                 }
             }            
         }catch(Exception e){
-             System.err.println("com.sfc.sf2.background.io.DisassemblyManager.parseGraphics() - Error while parsing graphics data : "+e);
+             System.err.println("com.sfc.sf2.portrait.io.DisassemblyManager.parseGraphics() - Error while parsing graphics data : "+e);
              e.printStackTrace();
         }    
-        System.out.println("com.sfc.sf2.background.io.DisassemblyManager.importDisassembly() - Disassembly imported.");
+        System.out.println("com.sfc.sf2.portrait.io.DisassemblyManager.importDisassembly() - Disassembly imported.");
         return portrait;
     }
     

@@ -283,7 +283,7 @@ public class MainEditor extends javax.swing.JFrame {
 
         jLabel2.setText("<html>Select a portrait file.<br/>Typical disassembly path : data/graphics/portraits/</html>");
 
-        jTextField9.setText("E:\\SEGADEV\\GITHUB\\SF2DISASM\\disasm\\data\\graphics\\portraits\\portrait00.bin");
+        jTextField9.setText(".\\portrait00.bin");
         jTextField9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField9ActionPerformed(evt);
@@ -423,7 +423,7 @@ public class MainEditor extends javax.swing.JFrame {
 
         jLabel14.setText("File :");
 
-        jTextField13.setText("E:\\SEGADEV\\GITHUB\\SF2DISASM\\disasm\\data\\graphics\\portraits\\newportrait00.bin");
+        jTextField13.setText(".\\newportrait00.bin");
         jTextField13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField13ActionPerformed(evt);
@@ -474,7 +474,7 @@ public class MainEditor extends javax.swing.JFrame {
 
         jLabel15.setText("PNG Files :");
 
-        jTextField15.setText("E:\\SEGADEV\\GITHUB\\SF2DISASM\\disasm\\data\\graphics\\portraits\\portrait00.png");
+        jTextField15.setText(".\\portrait00.png");
         jTextField15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField15ActionPerformed(evt);
