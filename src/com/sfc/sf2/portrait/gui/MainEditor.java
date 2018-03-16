@@ -867,7 +867,7 @@ public class MainEditor extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton28ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-        portraitManager.exportPng(jTextField16.getText());
+        portraitManager.exportGif(jTextField16.getText());
     }//GEN-LAST:event_jButton16ActionPerformed
 
     /**
