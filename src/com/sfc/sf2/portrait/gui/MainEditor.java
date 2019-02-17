@@ -15,6 +15,9 @@ import java.awt.GridLayout;
 import java.awt.LayoutManager;
 import java.io.File;
 import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URISyntaxException;
+import java.net.URLDecoder;
 import java.util.logging.ConsoleHandler;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -43,13 +46,18 @@ public class MainEditor extends javax.swing.JFrame {
     public MainEditor() {
         initComponents();
         initConsole(jTextArea1);
-        System.setProperty("java.util.logging.SimpleFormatter.format", 
-            "%2$s - %5$s%6$s%n");        
-        initLogger("com.sfc.sf2.graphics", Level.WARNING);        
-        File workingDirectory = new File(MainEditor.class.getProtectionDomain().getCodeSource().getLocation().getPath());
-        System.setProperty("user.dir", workingDirectory.getParent());
-        jFileChooser1.setCurrentDirectory(workingDirectory);
-        jFileChooser2.setCurrentDirectory(workingDirectory);       
+        System.setProperty("java.util.logging.SimpleFormatter.format",
+                "%2$s - %5$s%6$s%n");
+        initLogger("com.sfc.sf2.graphics", Level.WARNING);
+        try {
+            File workingDirectory = new File(MainEditor.class.getProtectionDomain().getCodeSource().getLocation().toURI()).getParentFile();
+            System.setProperty("user.dir", workingDirectory.toString());
+            System.out.println("com.sfc.sf2.portrait.gui.MainEditor.MainEditor() - Setting user.dir : "+System.getProperty("user.dir"));
+            jFileChooser1.setCurrentDirectory(workingDirectory);       
+            jFileChooser2.setCurrentDirectory(workingDirectory);
+        } catch (URISyntaxException ex) {
+            Logger.getLogger(MainEditor.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     private void initLogger(String name, Level level){
