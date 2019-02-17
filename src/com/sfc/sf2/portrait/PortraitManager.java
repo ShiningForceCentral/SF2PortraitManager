@@ -36,6 +36,20 @@ public class PortraitManager {
         DisassemblyManager.exportDisassembly(portrait, filepath);
         System.out.println("com.sfc.sf2.portrait.PortraitManager.importDisassembly() - Disassembly exported.");        
     }   
+       
+    public Portrait[] importAllDisassembly(String basePath){
+        System.out.println("com.sfc.sf2.portrait.PortraitManager.importDisassembly() - Importing ALL disassembly files ...");
+        Portrait[] portraits = DisassemblyManager.importAllDisassembly(basePath);
+        System.out.println("com.sfc.sf2.portrait.PortraitManager.importDisassembly() - ALL Disassembly files imported.");
+        return portraits;
+    } 
+       
+    public Portrait[] importDisassemblyFromEntryFile(String basePath, String entryPath){
+        System.out.println("com.sfc.sf2.portrait.PortraitManager.importDisassembly() - Importing ALL disassembly files ...");
+        Portrait[] portraits = DisassemblyManager.importDisassemblyFromEntryFile(basePath, entryPath);
+        System.out.println("com.sfc.sf2.portrait.PortraitManager.importDisassembly() - ALL Disassembly files imported.");
+        return portraits;
+    }
     
     
     public void importPng(String filepath){

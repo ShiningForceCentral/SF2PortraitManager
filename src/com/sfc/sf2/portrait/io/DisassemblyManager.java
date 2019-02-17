@@ -13,7 +13,9 @@ import com.sfc.sf2.graphics.compressed.StackGraphicsDecoder;
 import com.sfc.sf2.graphics.compressed.StackGraphicsEncoder;
 import com.sfc.sf2.palette.graphics.PaletteDecoder;
 import com.sfc.sf2.palette.graphics.PaletteEncoder;
+import com.sfc.sf2.portrait.layout.PortraitLayout;
 import java.awt.Color;
+import java.io.File;
 import java.nio.ByteBuffer;
 import java.nio.ByteOrder;
 import java.nio.file.Files;
@@ -21,6 +23,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -79,6 +82,70 @@ public class DisassemblyManager {
         }    
         System.out.println("com.sfc.sf2.portrait.io.DisassemblyManager.importDisassembly() - Disassembly imported.");
         return portrait;
+    }
+    
+    public static Portrait[] importAllDisassembly(String filepath){
+        System.out.println("com.sfc.sf2.portrait.io.DisassemblyManager.importAllDisassembly() - Importing ALL disassembly files ...");
+        Portrait[] portraits = null;
+        List<Portrait> portraitList = new ArrayList();
+        
+        String dir = filepath.substring(0, filepath.lastIndexOf(System.getProperty("file.separator")));
+        File directory = new File(dir);
+        File[] files = directory.listFiles();
+        for(File f : files){        
+            if(f.getName().endsWith(".bin")){
+                System.out.println("Importing "+f.getAbsolutePath()+" ...");
+                Portrait portrait = importDisassembly(f.getAbsolutePath());
+                portrait.setImage(PortraitLayout.buildImage(portrait.getTiles(), 8, true));
+                portraitList.add(portrait);
+            }
+                
+            
+        }
+        portraits = new Portrait[portraitList.size()];
+        portraits = portraitList.toArray(portraits);
+        
+        System.out.println("com.sfc.sf2.portrait.io.DisassemblyManager.importAllDisassembly() - ALL Disassembly files imported.");
+        return portraits;
+    }
+    
+    public static Portrait[] importDisassemblyFromEntryFile(String basepath, String entriesPath){
+        System.out.println("com.sfc.sf2.portrait.io.DisassemblyManager.importAllDisassembly() - Importing ALL disassembly files ...");
+        Portrait[] portraits = null;
+        List<Portrait> portraitList = new ArrayList();
+        try{
+            File entryFile = new File(entriesPath);
+            Scanner scan = new Scanner(entryFile);
+            List<String> filepaths = new ArrayList();
+            while(scan.hasNext()){
+                String line = scan.nextLine();
+                if(line.contains("dc.l")){
+                    String pointer = line.substring(line.indexOf("dc.l")+5).trim();
+                    String filepath = null;
+                    Scanner filescan = new Scanner(entryFile);
+                    while(filescan.hasNext()){
+                        String pathline = filescan.nextLine();
+                        if(pathline.startsWith(pointer)){
+                            filepath = pathline.substring(pathline.indexOf("\"")+1, pathline.lastIndexOf("\""));
+                        }
+                    }
+                    filepaths.add(filepath);
+                }
+            }            
+            for(int i=0;i<filepaths.size();i++){
+                String filePath = basepath + filepaths.get(i);
+                System.out.println("Importing "+filePath+" ...");
+                Portrait portrait = importDisassembly(filePath);
+                portrait.setImage(PortraitLayout.buildImage(portrait.getTiles(), 8, true));
+                portraitList.add(portrait);
+            }
+        }catch(Exception e){
+             System.err.println("com.sfc.sf2.mapsprite.io.PngManager.importPng() - Error while parsing graphics data : "+e);
+        }      
+        portraits = new Portrait[portraitList.size()];
+        portraits = portraitList.toArray(portraits);   
+        System.out.println("com.sfc.sf2.portrait.io.DisassemblyManager.importAllDisassembly() - ALL Disassembly files imported.");
+        return portraits;
     }
     
     public static void exportDisassembly(Portrait portrait, String filepath){

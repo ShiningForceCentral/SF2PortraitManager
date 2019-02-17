@@ -6,7 +6,7 @@
 package com.sfc.sf2.portrait;
 
 import com.sfc.sf2.graphics.Tile;
-import java.awt.Color;
+import java.awt.image.BufferedImage;
 
 /**
  *
@@ -19,6 +19,8 @@ public class Portrait {
     private int[][] eyeTiles;
     
     private int[][] mouthTiles;
+    
+    private BufferedImage image;
 
     public Tile[] getTiles() {
         return tiles;
@@ -43,4 +45,14 @@ public class Portrait {
     public void setMouthTiles(int[][] mouthTiles) {
         this.mouthTiles = mouthTiles;
     }
+
+    public BufferedImage getImage() {
+        return image;
+    }
+
+    public void setImage(BufferedImage image) {
+        this.image = image;
+    }
+    
+    
 }
