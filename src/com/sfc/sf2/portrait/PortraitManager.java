@@ -9,6 +9,7 @@ import com.sfc.sf2.graphics.GraphicsManager;
 import com.sfc.sf2.graphics.Tile;
 import com.sfc.sf2.portrait.io.DisassemblyManager;
 import com.sfc.sf2.portrait.io.PngManager;
+import com.sfc.sf2.portrait.io.GifManager;
 import com.sfc.sf2.palette.PaletteManager;
 import java.awt.Color;
 
@@ -64,6 +65,20 @@ public class PortraitManager {
         System.out.println("com.sfc.sf2.portrait.PortraitManager.exportPng() - Exporting PNG ...");
         PngManager.exportPng(portrait, filepath);
         System.out.println("com.sfc.sf2.portrait.PortraitManager.exportPng() - PNG exported.");       
+    }
+    
+    public void importGif(String filepath){
+        System.out.println("com.sfc.sf2.portrait.PortraitManager.importGif() - Importing GIF ...");
+        portrait.setTiles(GifManager.importGif(filepath).getTiles());
+        this.tiles = portrait.getTiles();
+        graphicsManager.setTiles(portrait.getTiles());
+        System.out.println("com.sfc.sf2.portrait.PortraitManager.importGif() - GIF imported.");
+    }
+    
+    public void exportGif(String filepath){
+        System.out.println("com.sfc.sf2.portrait.PortraitManager.exportGif() - Exporting GIF ...");
+        GifManager.exportGif(portrait, filepath);
+        System.out.println("com.sfc.sf2.portrait.PortraitManager.exportGif() - GIF exported.");       
     }
 
     public Portrait getPortrait() {
