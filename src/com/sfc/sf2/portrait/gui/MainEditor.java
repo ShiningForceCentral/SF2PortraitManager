@@ -29,6 +29,9 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
+import javax.swing.event.TableModelEvent;
 import javax.swing.table.TableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -39,6 +42,8 @@ import javax.swing.table.TableRowSorter;
 public class MainEditor extends javax.swing.JFrame {
     
     PortraitManager portraitManager = new PortraitManager();
+    PortraitTableModel eyeTable;
+    PortraitTableModel mouthTable;
     
     /**
      * Creates new form NewApplication
@@ -94,9 +99,13 @@ public class MainEditor extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jPanel12 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
+        jButton3 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jTabbedPane1 = new javax.swing.JTabbedPane();
@@ -144,6 +153,7 @@ public class MainEditor extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SF2PortraitManager");
 
+        jSplitPane1.setDividerLocation(400);
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
         jSplitPane1.setOneTouchExpandable(true);
 
@@ -166,7 +176,7 @@ public class MainEditor extends javax.swing.JFrame {
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
         );
 
         jSplitPane1.setBottomComponent(jPanel7);
@@ -197,7 +207,7 @@ public class MainEditor extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 177, Short.MAX_VALUE)
         );
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Eyes"));
@@ -223,15 +233,39 @@ public class MainEditor extends javax.swing.JFrame {
         });
         jScrollPane3.setViewportView(jTable1);
 
+        jButton1.setText("Add");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Remove");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton4)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton4)))
         );
 
         jPanel12.setBorder(javax.swing.BorderFactory.createTitledBorder("Mouth"));
@@ -257,15 +291,39 @@ public class MainEditor extends javax.swing.JFrame {
         });
         jScrollPane4.setViewportView(jTable2);
 
+        jButton3.setText("Add");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton5.setText("Remove");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel12Layout = new javax.swing.GroupLayout(jPanel12);
         jPanel12.setLayout(jPanel12Layout);
         jPanel12Layout.setHorizontalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 133, Short.MAX_VALUE)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton5)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 173, Short.MAX_VALUE)
+            .addGroup(jPanel12Layout.createSequentialGroup()
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton3)
+                    .addComponent(jButton5)))
         );
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
@@ -274,17 +332,17 @@ public class MainEditor extends javax.swing.JFrame {
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel12, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
@@ -303,7 +361,7 @@ public class MainEditor extends javax.swing.JFrame {
 
         jLabel2.setText("<html>Select a portrait file.<br/>Typical disassembly path : data/graphics/portraits/</html>");
 
-        jTextField9.setText(".\\portrait00.bin");
+        jTextField9.setText("C:\\SEGADEV\\SFFC\\SF2DISASM\\disasm\\data\\graphics\\portraits\\.\\portrait00.bin");
         jTextField9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField9ActionPerformed(evt);
@@ -329,7 +387,7 @@ public class MainEditor extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField9, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE)
+                        .addComponent(jTextField9, javax.swing.GroupLayout.DEFAULT_SIZE, 338, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton15))
                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -356,7 +414,7 @@ public class MainEditor extends javax.swing.JFrame {
 
         jLabel11.setText("PNG File :");
 
-        jTextField11.setText(".\\portrait00.png");
+        jTextField11.setText("C:\\SEGADEV\\SFFC\\SF2DISASM\\disasm\\data\\graphics\\portraits\\.\\sffc\\work\\max-pic.png");
         jTextField11.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField11ActionPerformed(evt);
@@ -389,7 +447,7 @@ public class MainEditor extends javax.swing.JFrame {
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField11, javax.swing.GroupLayout.DEFAULT_SIZE, 325, Short.MAX_VALUE)
+                        .addComponent(jTextField11, javax.swing.GroupLayout.DEFAULT_SIZE, 315, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton17))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
@@ -450,7 +508,7 @@ public class MainEditor extends javax.swing.JFrame {
                     .addGroup(jPanel16Layout.createSequentialGroup()
                         .addComponent(jLabel12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField12, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE)
+                        .addComponent(jTextField12, javax.swing.GroupLayout.DEFAULT_SIZE, 318, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton19))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
@@ -504,7 +562,7 @@ public class MainEditor extends javax.swing.JFrame {
 
         jLabel14.setText("File :");
 
-        jTextField13.setText(".\\newportrait00.bin");
+        jTextField13.setText("C:\\SEGADEV\\SFFC\\SF2DISASM\\disasm\\data\\graphics\\portraits\\.\\portrait00.bin");
         jTextField13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField13ActionPerformed(evt);
@@ -528,11 +586,11 @@ public class MainEditor extends javax.swing.JFrame {
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addComponent(jLabel14)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField13, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
+                        .addComponent(jTextField13, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)
                         .addGap(10, 10, 10)
                         .addComponent(jButton20))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 363, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2)))
                 .addContainerGap())
@@ -555,7 +613,7 @@ public class MainEditor extends javax.swing.JFrame {
 
         jLabel15.setText("PNG Files :");
 
-        jTextField15.setText(".\\portrait00.png");
+        jTextField15.setText("C:\\SEGADEV\\SFFC\\SF2DISASM\\disasm\\data\\graphics\\portraits\\.\\portrait00.png");
         jTextField15.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField15ActionPerformed(evt);
@@ -588,7 +646,7 @@ public class MainEditor extends javax.swing.JFrame {
                     .addGroup(jPanel14Layout.createSequentialGroup()
                         .addComponent(jLabel15)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField15, javax.swing.GroupLayout.DEFAULT_SIZE, 320, Short.MAX_VALUE)
+                        .addComponent(jTextField15, javax.swing.GroupLayout.DEFAULT_SIZE, 310, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton27))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
@@ -648,7 +706,7 @@ public class MainEditor extends javax.swing.JFrame {
                     .addGroup(jPanel17Layout.createSequentialGroup()
                         .addComponent(jLabel16)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField16, javax.swing.GroupLayout.DEFAULT_SIZE, 323, Short.MAX_VALUE)
+                        .addComponent(jTextField16, javax.swing.GroupLayout.DEFAULT_SIZE, 313, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton28))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
@@ -691,8 +749,8 @@ public class MainEditor extends javax.swing.JFrame {
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 499, Short.MAX_VALUE)
-            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 499, Short.MAX_VALUE)
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 489, Short.MAX_VALUE)
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -713,7 +771,7 @@ public class MainEditor extends javax.swing.JFrame {
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jSplitPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 328, Short.MAX_VALUE)
+            .addComponent(jSplitPane2)
         );
 
         jSplitPane1.setLeftComponent(jPanel15);
@@ -740,7 +798,7 @@ public class MainEditor extends javax.swing.JFrame {
             .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(816, 573));
+        setSize(new java.awt.Dimension(806, 573));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -774,14 +832,46 @@ public class MainEditor extends javax.swing.JFrame {
         jPanel2.removeAll();
         Tile[] tiles = portraitManager.getTiles();        
         jPanel2.setLayout(new GridLayout(1,1));
-        PortraitLayout portraitLayout = new PortraitLayout();
+        final PortraitLayout portraitLayout = new PortraitLayout();
         portraitLayout.setTiles(tiles);
+        eyeTable = new PortraitTableModel(portraitManager.getPortrait().getEyeTiles(),portraitLayout);
+        mouthTable = new PortraitTableModel(portraitManager.getPortrait().getMouthTiles(),portraitLayout);
         jPanel2.add(portraitLayout);
         jPanel2.setSize(portraitLayout.getWidth(), portraitLayout.getHeight());
         jPanel2.revalidate();
         jPanel2.repaint();  
-        jTable1.setModel(new PortraitTableModel(portraitManager.getPortrait().getEyeTiles()));
-        jTable2.setModel(new PortraitTableModel(portraitManager.getPortrait().getMouthTiles()));
+        eyeTable = new PortraitTableModel(portraitManager.getPortrait().getEyeTiles(),portraitLayout);
+        mouthTable = new PortraitTableModel(portraitManager.getPortrait().getMouthTiles(),portraitLayout);
+        jTable1.setModel(eyeTable);
+        jTable1.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+            private int selectedRow = -1;
+            @Override
+            public void valueChanged(ListSelectionEvent event) {
+                if(selectedRow!=jTable1.getSelectedRow()){
+                    selectedRow = jTable1.getSelectedRow();
+                    portraitLayout.setSelectedEyeTile(selectedRow);
+                    portraitLayout.updateDisplay();
+                    jPanel2.revalidate();
+                    jPanel2.repaint();
+                }
+            }
+        });         
+        jTable2.setModel(mouthTable);
+        jTable2.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+            private int selectedRow = -1;
+            @Override
+            public void valueChanged(ListSelectionEvent event) {
+                if(selectedRow!=jTable2.getSelectedRow()){
+                    selectedRow = jTable2.getSelectedRow();
+                    portraitLayout.setSelectedMouthTile(selectedRow);
+                    portraitLayout.updateDisplay();
+                    jPanel2.revalidate();
+                    jPanel2.repaint();
+                }
+            }
+        });      
+        portraitLayout.setEyeAnimTable(eyeTable);
+        portraitLayout.setMouthAnimTable(mouthTable);
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
@@ -801,14 +891,45 @@ public class MainEditor extends javax.swing.JFrame {
         jPanel2.removeAll();
         Tile[] tiles = portraitManager.getTiles();        
         jPanel2.setLayout(new GridLayout(1,1));
-        PortraitLayout portraitLayout = new PortraitLayout();
+        final PortraitLayout portraitLayout = new PortraitLayout();
         portraitLayout.setTiles(tiles);
         jPanel2.add(portraitLayout);
         jPanel2.setSize(portraitLayout.getWidth(), portraitLayout.getHeight());
         jPanel2.revalidate();
         jPanel2.repaint();   
-        jTable1.setModel(new PortraitTableModel(portraitManager.getPortrait().getEyeTiles()));
-        jTable2.setModel(new PortraitTableModel(portraitManager.getPortrait().getMouthTiles()));
+        eyeTable = new PortraitTableModel(portraitManager.getPortrait().getEyeTiles(),portraitLayout);
+        mouthTable = new PortraitTableModel(portraitManager.getPortrait().getMouthTiles(),portraitLayout);
+        jTable1.setModel(eyeTable);
+        jTable1.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+            private int selectedRow = -1;
+            @Override
+            public void valueChanged(ListSelectionEvent event) {
+                if(selectedRow!=jTable1.getSelectedRow()){
+                    selectedRow = jTable1.getSelectedRow();
+                    portraitLayout.setSelectedEyeTile(selectedRow);
+                    portraitLayout.updateDisplay();
+                    jPanel2.revalidate();
+                    jPanel2.repaint();
+                }
+            }
+        });         
+        jTable2.setModel(mouthTable);
+        jTable2.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+            private int selectedRow = -1;
+            @Override
+            public void valueChanged(ListSelectionEvent event) {
+                if(selectedRow!=jTable2.getSelectedRow()){
+                    selectedRow = jTable2.getSelectedRow();
+                    portraitLayout.setSelectedMouthTile(selectedRow);
+                    portraitLayout.updateDisplay();
+                    jPanel2.revalidate();
+                    jPanel2.repaint();
+                }
+            }
+        });      
+        portraitLayout.setEyeAnimTable(eyeTable);
+        portraitLayout.setMouthAnimTable(mouthTable);
+        
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
@@ -852,14 +973,46 @@ public class MainEditor extends javax.swing.JFrame {
         jPanel2.removeAll();
         Tile[] tiles = portraitManager.getTiles();        
         jPanel2.setLayout(new GridLayout(1,1));
-        PortraitLayout portraitLayout = new PortraitLayout();
+        final PortraitLayout portraitLayout = new PortraitLayout();
         portraitLayout.setTiles(tiles);
+        eyeTable = new PortraitTableModel(portraitManager.getPortrait().getEyeTiles(),portraitLayout);
+        mouthTable = new PortraitTableModel(portraitManager.getPortrait().getMouthTiles(),portraitLayout);
         jPanel2.add(portraitLayout);
         jPanel2.setSize(portraitLayout.getWidth(), portraitLayout.getHeight());
         jPanel2.revalidate();
         jPanel2.repaint();  
-        jTable1.setModel(new PortraitTableModel(portraitManager.getPortrait().getEyeTiles()));
-        jTable2.setModel(new PortraitTableModel(portraitManager.getPortrait().getMouthTiles()));
+        eyeTable = new PortraitTableModel(portraitManager.getPortrait().getEyeTiles(),portraitLayout);
+        mouthTable = new PortraitTableModel(portraitManager.getPortrait().getMouthTiles(),portraitLayout);
+        jTable1.setModel(eyeTable);
+        jTable1.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+            private int selectedRow = -1;
+            @Override
+            public void valueChanged(ListSelectionEvent event) {
+                if(selectedRow!=jTable1.getSelectedRow()){
+                    selectedRow = jTable1.getSelectedRow();
+                    portraitLayout.setSelectedEyeTile(selectedRow);
+                    portraitLayout.updateDisplay();
+                    jPanel2.revalidate();
+                    jPanel2.repaint();
+                }
+            }
+        });         
+        jTable2.setModel(mouthTable);
+        jTable2.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+            private int selectedRow = -1;
+            @Override
+            public void valueChanged(ListSelectionEvent event) {
+                if(selectedRow!=jTable2.getSelectedRow()){
+                    selectedRow = jTable2.getSelectedRow();
+                    portraitLayout.setSelectedMouthTile(selectedRow);
+                    portraitLayout.updateDisplay();
+                    jPanel2.revalidate();
+                    jPanel2.repaint();
+                }
+            }
+        });      
+        portraitLayout.setEyeAnimTable(eyeTable);
+        portraitLayout.setMouthAnimTable(mouthTable);
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jTextField16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField16ActionPerformed
@@ -877,6 +1030,34 @@ public class MainEditor extends javax.swing.JFrame {
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
         portraitManager.exportGif(jTextField16.getText());
     }//GEN-LAST:event_jButton16ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        eyeTable.addRow();
+        eyeTable.fireTableChanged(new TableModelEvent(eyeTable));
+        jTable1.validate();
+        jTable1.repaint();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        eyeTable.removeRow();
+        eyeTable.fireTableChanged(new TableModelEvent(eyeTable));
+        jTable1.validate();
+        jTable1.repaint();
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        mouthTable.addRow();
+        mouthTable.fireTableChanged(new TableModelEvent(mouthTable));
+        jTable2.validate();
+        jTable2.repaint();
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        mouthTable.removeRow();
+        mouthTable.fireTableChanged(new TableModelEvent(mouthTable));
+        jTable2.validate();
+        jTable2.repaint();
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -920,6 +1101,7 @@ public class MainEditor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
@@ -932,6 +1114,9 @@ public class MainEditor extends javax.swing.JFrame {
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton27;
     private javax.swing.JButton jButton28;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JFileChooser jFileChooser2;
     private javax.swing.JLabel jLabel1;
