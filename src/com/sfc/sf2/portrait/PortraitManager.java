@@ -11,7 +11,6 @@ import com.sfc.sf2.portrait.io.DisassemblyManager;
 import com.sfc.sf2.portrait.io.PngManager;
 import com.sfc.sf2.portrait.io.GifManager;
 import com.sfc.sf2.palette.PaletteManager;
-import java.awt.Color;
 
 /**
  *

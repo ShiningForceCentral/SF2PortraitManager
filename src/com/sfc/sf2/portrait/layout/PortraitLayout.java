@@ -33,9 +33,13 @@ public class PortraitLayout extends JPanel  implements MouseListener, MouseMotio
     private PortraitTableModel eyeAnimTable;
     private PortraitTableModel mouthAnimTable;
     
+    private boolean blinking = false;
+    private boolean speaking = false;
+    
     private int selectedEyeTile = -1;
     private int selectedMouthTile = -1;
     
+    private boolean drawGrid = false;
     private boolean redraw = true;
     private BufferedImage currentImage = null;
     private BufferedImage selectedTileImage = null;
@@ -76,10 +80,42 @@ public class PortraitLayout extends JPanel  implements MouseListener, MouseMotio
             Graphics graphics = currentImage.getGraphics();     
             for(int i=0;i<8;i++){
                 for(int j=0;j<8;j++){
-                    graphics.drawImage(tiles[(i*8)+j].getImage(), j*8, i*8, null);
+                    int tileID = i+j*8;
+                    if (!pngExport) {
+                        if (blinking) {
+                            int[][] eyeTableData = eyeAnimTable.getTableData();
+                            for (int b = 0; b < eyeTableData.length; b++) {
+                                if (eyeTableData[b][0] == i && eyeTableData[b][1] == j) {
+                                    tileID = eyeTableData[b][2]+eyeTableData[b][3]*8;
+                                    break;
+                                }
+                            }
+                        }
+                        if (speaking) {
+                            int[][] mouthTableData = mouthAnimTable.getTableData();
+                            for (int m = 0; m < mouthTableData.length; m++) {
+                                if (mouthTableData[m][0] == i && mouthTableData[m][1] == j) {
+                                    tileID = mouthTableData[m][2]+mouthTableData[m][3]*8;
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                    graphics.drawImage(tiles[tileID].getImage(), i*8, j*8, null);
                 }
             }
             if(!pngExport){
+                if (drawGrid) {
+                    for (int i = 0; i < 8; i++) {
+                        BufferedImage img = new BufferedImage(8*8, 8*8, BufferedImage.TYPE_INT_ARGB);
+                        Graphics2D g2 = (Graphics2D) img.getGraphics();
+                        g2.setColor(Color.BLACK);
+                        g2.setStroke(new BasicStroke(1));
+                        g2.drawLine(0, i*8, 8*8, i*8);
+                        g2.drawRect(i*8, 0, i*8, 8*8);
+                        graphics.drawImage(img, 0, 0, null);
+                    }
+                }                
                 if(selectedEyeTile>=0){
                     graphics.drawImage(getSelectedTileImage(eyeAnimTable, selectedEyeTile),0,0,null);
                 }
@@ -195,7 +231,42 @@ public class PortraitLayout extends JPanel  implements MouseListener, MouseMotio
         this.selectedMouthTile = selectedMouthTile;
         this.selectedEyeTile = -1;
     }
-    
+
+    public boolean getBlinking() {
+        return blinking;
+    }
+
+    public void setBlinking(boolean blinking) {
+        if (this.blinking != blinking) {
+            this.blinking = blinking;
+            currentImage = null;
+            redraw = true;
+        }
+    }
+
+    public boolean getspeaking() {
+        return speaking;
+    }
+
+    public void setSpeaking(boolean speaking) {
+        if (this.speaking != speaking) {
+            this.speaking = speaking;
+            currentImage = null;
+            redraw = true;
+        }
+    }
+
+    public boolean getDrawGrid() {
+        return drawGrid;
+    }
+
+    public void setDrawGrid(boolean drawGrid) {
+        if (this.drawGrid != drawGrid) {
+            this.drawGrid = drawGrid;
+            currentImage = null;
+            redraw = true;
+        }
+    }
 
     @Override
     public void mouseClicked(MouseEvent e) {
