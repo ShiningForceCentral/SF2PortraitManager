@@ -11,6 +11,7 @@ import com.sfc.sf2.portrait.io.DisassemblyManager;
 import com.sfc.sf2.portrait.io.PngManager;
 import com.sfc.sf2.portrait.io.GifManager;
 import com.sfc.sf2.palette.PaletteManager;
+import com.sfc.sf2.portrait.io.MetaManager;
 
 /**
  *
@@ -52,32 +53,44 @@ public class PortraitManager {
     }
     
     
-    public void importPng(String filepath){
+    public void importPng(String filepath, String metadataPath){
         System.out.println("com.sfc.sf2.portrait.PortraitManager.importPng() - Importing PNG ...");
         portrait.setTiles(PngManager.importPng(filepath).getTiles());
+        MetaManager.importMetadata(portrait, getMetadataFullPath(filepath, metadataPath));
         this.tiles = portrait.getTiles();
         graphicsManager.setTiles(portrait.getTiles());
         System.out.println("com.sfc.sf2.portrait.PortraitManager.importPng() - PNG imported.");
     }
     
-    public void exportPng(String filepath){
+    public void exportPng(String filepath, String metadataPath){
         System.out.println("com.sfc.sf2.portrait.PortraitManager.exportPng() - Exporting PNG ...");
         PngManager.exportPng(portrait, filepath);
+        MetaManager.exportMetadata(portrait, getMetadataFullPath(filepath, metadataPath));
         System.out.println("com.sfc.sf2.portrait.PortraitManager.exportPng() - PNG exported.");       
     }
     
-    public void importGif(String filepath){
+    public void importGif(String filepath, String metadataPath){
         System.out.println("com.sfc.sf2.portrait.PortraitManager.importGif() - Importing GIF ...");
         portrait.setTiles(GifManager.importGif(filepath).getTiles());
+        MetaManager.importMetadata(portrait, getMetadataFullPath(filepath, metadataPath));
         this.tiles = portrait.getTiles();
         graphicsManager.setTiles(portrait.getTiles());
         System.out.println("com.sfc.sf2.portrait.PortraitManager.importGif() - GIF imported.");
     }
     
-    public void exportGif(String filepath){
+    public void exportGif(String filepath, String metadataPath){
         System.out.println("com.sfc.sf2.portrait.PortraitManager.exportGif() - Exporting GIF ...");
         GifManager.exportGif(portrait, filepath);
+        MetaManager.exportMetadata(portrait, getMetadataFullPath(filepath, metadataPath));
         System.out.println("com.sfc.sf2.portrait.PortraitManager.exportGif() - GIF exported.");       
+    }
+    
+    private String getMetadataFullPath(String filepath, String metadataPath) {
+        if (metadataPath.equals(".meta")) {
+            return filepath.substring(0, filepath.lastIndexOf('.'))+metadataPath;
+        } else {
+            return metadataPath;
+        }
     }
 
     public Portrait getPortrait() {

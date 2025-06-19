@@ -572,9 +572,6 @@
                                       <Properties>
                                         <Property name="text" type="java.lang.String" value=".\u005cportrait00.bin" containsInvalidXMLChars="true"/>
                                       </Properties>
-                                      <Events>
-                                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField9ActionPerformed"/>
-                                      </Events>
                                     </Component>
                                     <Component class="javax.swing.JLabel" name="jLabel10">
                                       <Properties>
@@ -618,6 +615,13 @@
                                                       <EmptySpace max="-2" attributes="0"/>
                                                       <Component id="jButton12" min="-2" max="-2" attributes="0"/>
                                                   </Group>
+                                                  <Group type="102" alignment="1" attributes="0">
+                                                      <Component id="jLabel17" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="jTextField14" pref="324" max="32767" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="jButton21" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
                                               </Group>
                                               <EmptySpace max="-2" attributes="0"/>
                                           </Group>
@@ -632,6 +636,12 @@
                                                   <Component id="jButton17" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="3" attributes="0">
+                                                  <Component id="jTextField14" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel17" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jButton21" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace max="32767" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Component id="jButton12" min="-2" max="-2" attributes="0"/>
                                                   <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
@@ -651,9 +661,6 @@
                                       <Properties>
                                         <Property name="text" type="java.lang.String" value=".\u005cportrait00.png" containsInvalidXMLChars="true"/>
                                       </Properties>
-                                      <Events>
-                                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField11ActionPerformed"/>
-                                      </Events>
                                     </Component>
                                     <Component class="javax.swing.JButton" name="jButton17">
                                       <Properties>
@@ -675,6 +682,24 @@
                                       <Properties>
                                         <Property name="text" type="java.lang.String" value="&lt;html&gt;Select a PNG file.&lt;br&gt;Required PNG Format : 4BPP / 16 indexed colors.&lt;br/&gt;Transparency color at index 0.&lt;/html&gt;"/>
                                       </Properties>
+                                    </Component>
+                                    <Component class="javax.swing.JLabel" name="jLabel17">
+                                      <Properties>
+                                        <Property name="text" type="java.lang.String" value="Meta File :"/>
+                                      </Properties>
+                                    </Component>
+                                    <Component class="javax.swing.JTextField" name="jTextField14">
+                                      <Properties>
+                                        <Property name="text" type="java.lang.String" value=".meta"/>
+                                      </Properties>
+                                    </Component>
+                                    <Component class="javax.swing.JButton" name="jButton21">
+                                      <Properties>
+                                        <Property name="text" type="java.lang.String" value="File..."/>
+                                      </Properties>
+                                      <Events>
+                                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton21ActionPerformed"/>
+                                      </Events>
                                     </Component>
                                   </SubComponents>
                                 </Container>
@@ -705,6 +730,13 @@
                                                       <EmptySpace max="-2" attributes="0"/>
                                                       <Component id="jButton14" min="-2" max="-2" attributes="0"/>
                                                   </Group>
+                                                  <Group type="102" alignment="1" attributes="0">
+                                                      <Component id="jLabel18" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="jTextField17" pref="324" max="32767" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="jButton22" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
                                               </Group>
                                               <EmptySpace max="-2" attributes="0"/>
                                           </Group>
@@ -719,6 +751,12 @@
                                                   <Component id="jButton19" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="3" attributes="0">
+                                                  <Component id="jTextField17" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel18" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jButton22" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace max="32767" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Component id="jButton14" alignment="0" min="-2" max="-2" attributes="0"/>
                                                   <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -738,9 +776,6 @@
                                       <Properties>
                                         <Property name="text" type="java.lang.String" value=".\u005cportrait00.gif" containsInvalidXMLChars="true"/>
                                       </Properties>
-                                      <Events>
-                                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField12ActionPerformed"/>
-                                      </Events>
                                     </Component>
                                     <Component class="javax.swing.JButton" name="jButton19">
                                       <Properties>
@@ -761,6 +796,24 @@
                                       </Properties>
                                       <Events>
                                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton14ActionPerformed"/>
+                                      </Events>
+                                    </Component>
+                                    <Component class="javax.swing.JLabel" name="jLabel18">
+                                      <Properties>
+                                        <Property name="text" type="java.lang.String" value="Meta File :"/>
+                                      </Properties>
+                                    </Component>
+                                    <Component class="javax.swing.JTextField" name="jTextField17">
+                                      <Properties>
+                                        <Property name="text" type="java.lang.String" value=".meta"/>
+                                      </Properties>
+                                    </Component>
+                                    <Component class="javax.swing.JButton" name="jButton22">
+                                      <Properties>
+                                        <Property name="text" type="java.lang.String" value="File..."/>
+                                      </Properties>
+                                      <Events>
+                                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton22ActionPerformed"/>
                                       </Events>
                                     </Component>
                                   </SubComponents>
@@ -875,9 +928,6 @@
                                       <Properties>
                                         <Property name="text" type="java.lang.String" value=".\u005cportrait00.bin" containsInvalidXMLChars="true"/>
                                       </Properties>
-                                      <Events>
-                                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField13ActionPerformed"/>
-                                      </Events>
                                     </Component>
                                     <Component class="javax.swing.JButton" name="jButton20">
                                       <Properties>
@@ -916,6 +966,13 @@
                                                       <EmptySpace max="-2" attributes="0"/>
                                                       <Component id="jButton13" min="-2" max="-2" attributes="0"/>
                                                   </Group>
+                                                  <Group type="102" alignment="1" attributes="0">
+                                                      <Component id="jLabel19" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="jTextField18" pref="324" max="32767" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="jButton23" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
                                               </Group>
                                               <EmptySpace max="-2" attributes="0"/>
                                           </Group>
@@ -930,6 +987,12 @@
                                                   <Component id="jButton27" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="3" attributes="0">
+                                                  <Component id="jTextField18" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel19" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jButton23" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace max="32767" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Component id="jButton13" min="-2" max="-2" attributes="0"/>
                                                   <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
@@ -949,9 +1012,6 @@
                                       <Properties>
                                         <Property name="text" type="java.lang.String" value=".\u005cportrait00.png" containsInvalidXMLChars="true"/>
                                       </Properties>
-                                      <Events>
-                                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField15ActionPerformed"/>
-                                      </Events>
                                     </Component>
                                     <Component class="javax.swing.JButton" name="jButton27">
                                       <Properties>
@@ -973,6 +1033,24 @@
                                       <Properties>
                                         <Property name="text" type="java.lang.String" value="&lt;html&gt;Creates a new file, or overwrites existing file.&lt;br&gt;Exported PNG Format : 4BPP / 16 indexed colors.&lt;br/&gt;Transparency color at index 0.&lt;/html&gt;"/>
                                       </Properties>
+                                    </Component>
+                                    <Component class="javax.swing.JLabel" name="jLabel19">
+                                      <Properties>
+                                        <Property name="text" type="java.lang.String" value="Meta File :"/>
+                                      </Properties>
+                                    </Component>
+                                    <Component class="javax.swing.JTextField" name="jTextField18">
+                                      <Properties>
+                                        <Property name="text" type="java.lang.String" value=".meta"/>
+                                      </Properties>
+                                    </Component>
+                                    <Component class="javax.swing.JButton" name="jButton23">
+                                      <Properties>
+                                        <Property name="text" type="java.lang.String" value="File..."/>
+                                      </Properties>
+                                      <Events>
+                                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton23ActionPerformed"/>
+                                      </Events>
                                     </Component>
                                   </SubComponents>
                                 </Container>
@@ -1003,6 +1081,13 @@
                                                       <EmptySpace max="-2" attributes="0"/>
                                                       <Component id="jButton16" min="-2" max="-2" attributes="0"/>
                                                   </Group>
+                                                  <Group type="102" alignment="1" attributes="0">
+                                                      <Component id="jLabel20" min="-2" max="-2" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="jTextField19" pref="324" max="32767" attributes="0"/>
+                                                      <EmptySpace max="-2" attributes="0"/>
+                                                      <Component id="jButton24" min="-2" max="-2" attributes="0"/>
+                                                  </Group>
                                               </Group>
                                               <EmptySpace max="-2" attributes="0"/>
                                           </Group>
@@ -1017,6 +1102,12 @@
                                                   <Component id="jButton28" alignment="3" min="-2" max="-2" attributes="0"/>
                                               </Group>
                                               <EmptySpace max="-2" attributes="0"/>
+                                              <Group type="103" groupAlignment="3" attributes="0">
+                                                  <Component id="jTextField19" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jLabel20" alignment="3" min="-2" max="-2" attributes="0"/>
+                                                  <Component id="jButton24" alignment="3" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace max="32767" attributes="0"/>
                                               <Group type="103" groupAlignment="0" attributes="0">
                                                   <Component id="jButton16" alignment="0" min="-2" max="-2" attributes="0"/>
                                                   <Component id="jLabel13" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -1036,9 +1127,6 @@
                                       <Properties>
                                         <Property name="text" type="java.lang.String" value=".\u005cportrait00.gif" containsInvalidXMLChars="true"/>
                                       </Properties>
-                                      <Events>
-                                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField16ActionPerformed"/>
-                                      </Events>
                                     </Component>
                                     <Component class="javax.swing.JButton" name="jButton28">
                                       <Properties>
@@ -1059,6 +1147,24 @@
                                       </Properties>
                                       <Events>
                                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton16ActionPerformed"/>
+                                      </Events>
+                                    </Component>
+                                    <Component class="javax.swing.JLabel" name="jLabel20">
+                                      <Properties>
+                                        <Property name="text" type="java.lang.String" value="Meta File :"/>
+                                      </Properties>
+                                    </Component>
+                                    <Component class="javax.swing.JTextField" name="jTextField19">
+                                      <Properties>
+                                        <Property name="text" type="java.lang.String" value=".meta"/>
+                                      </Properties>
+                                    </Component>
+                                    <Component class="javax.swing.JButton" name="jButton24">
+                                      <Properties>
+                                        <Property name="text" type="java.lang.String" value="File..."/>
+                                      </Properties>
+                                      <Events>
+                                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton24ActionPerformed"/>
                                       </Events>
                                     </Component>
                                   </SubComponents>
