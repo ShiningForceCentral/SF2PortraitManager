@@ -88,6 +88,7 @@ public class MainEditor extends javax.swing.JFrame {
         jCheckBox1 = new javax.swing.JCheckBox();
         jCheckBox2 = new javax.swing.JCheckBox();
         jCheckBox3 = new javax.swing.JCheckBox();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jPanel6 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -145,7 +146,7 @@ public class MainEditor extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("SF2PortraitManager");
 
-        jSplitPane1.setDividerLocation(400);
+        jSplitPane1.setDividerLocation(550);
         jSplitPane1.setOrientation(javax.swing.JSplitPane.VERTICAL_SPLIT);
         jSplitPane1.setOneTouchExpandable(true);
 
@@ -168,7 +169,7 @@ public class MainEditor extends javax.swing.JFrame {
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 103, Short.MAX_VALUE)
         );
 
         jSplitPane1.setBottomComponent(jPanel7);
@@ -176,7 +177,9 @@ public class MainEditor extends javax.swing.JFrame {
         jSplitPane2.setDividerLocation(500);
         jSplitPane2.setOneTouchExpandable(true);
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Tiles"));
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Portrait"));
+
+        jScrollPane2.setPreferredSize(new java.awt.Dimension(250, 100));
 
         jPanel2.setMinimumSize(new java.awt.Dimension(100, 100));
 
@@ -214,29 +217,41 @@ public class MainEditor extends javax.swing.JFrame {
             }
         });
 
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "x1", "x2", "x3", "x4" }));
+        jComboBox1.setSelectedIndex(1);
+        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBox1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jCheckBox2)
                     .addComponent(jCheckBox1)
-                    .addComponent(jCheckBox3))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jComboBox1, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jCheckBox3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jCheckBox3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jCheckBox1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jCheckBox2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jCheckBox3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -365,7 +380,7 @@ public class MainEditor extends javax.swing.JFrame {
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 326, Short.MAX_VALUE))
+                .addGap(0, 67, Short.MAX_VALUE))
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -417,7 +432,7 @@ public class MainEditor extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel10)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField9, javax.swing.GroupLayout.DEFAULT_SIZE, 296, Short.MAX_VALUE)
+                        .addComponent(jTextField9, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton15))
                     .addGroup(jPanel4Layout.createSequentialGroup()
@@ -437,7 +452,7 @@ public class MainEditor extends javax.swing.JFrame {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton18))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(26, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Disassembly", jPanel4);
@@ -477,11 +492,10 @@ public class MainEditor extends javax.swing.JFrame {
                     .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField11, javax.swing.GroupLayout.DEFAULT_SIZE, 269, Short.MAX_VALUE)
+                        .addComponent(jTextField11, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton17))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
+                    .addGroup(jPanel9Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton12)))
@@ -498,7 +512,7 @@ public class MainEditor extends javax.swing.JFrame {
                 .addGroup(jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton12)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("PNG", jPanel9);
@@ -538,11 +552,10 @@ public class MainEditor extends javax.swing.JFrame {
                     .addGroup(jPanel16Layout.createSequentialGroup()
                         .addComponent(jLabel12)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField12, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+                        .addComponent(jTextField12, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton19))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel16Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton14)))
@@ -559,7 +572,7 @@ public class MainEditor extends javax.swing.JFrame {
                 .addGroup(jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton14)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(36, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("GIF", jPanel16);
@@ -575,7 +588,7 @@ public class MainEditor extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 135, Short.MAX_VALUE)
+            .addComponent(jTabbedPane1)
         );
 
         jPanel5.setBorder(javax.swing.BorderFactory.createTitledBorder("Export to :"));
@@ -616,11 +629,11 @@ public class MainEditor extends javax.swing.JFrame {
                     .addGroup(jPanel11Layout.createSequentialGroup()
                         .addComponent(jLabel14)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField13, javax.swing.GroupLayout.DEFAULT_SIZE, 292, Short.MAX_VALUE)
+                        .addComponent(jTextField13, javax.swing.GroupLayout.DEFAULT_SIZE, 350, Short.MAX_VALUE)
                         .addGap(10, 10, 10)
                         .addComponent(jButton20))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel11Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 384, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton2)))
                 .addContainerGap())
@@ -636,12 +649,12 @@ public class MainEditor extends javax.swing.JFrame {
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(29, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Disassembly", jPanel11);
 
-        jLabel15.setText("PNG Files :");
+        jLabel15.setText("PNG File :");
 
         jTextField15.setText(".\\portrait00.png");
         jTextField15.addActionListener(new java.awt.event.ActionListener() {
@@ -676,7 +689,7 @@ public class MainEditor extends javax.swing.JFrame {
                     .addGroup(jPanel14Layout.createSequentialGroup()
                         .addComponent(jLabel15)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField15, javax.swing.GroupLayout.DEFAULT_SIZE, 264, Short.MAX_VALUE)
+                        .addComponent(jTextField15, javax.swing.GroupLayout.DEFAULT_SIZE, 327, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton27))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel14Layout.createSequentialGroup()
@@ -696,12 +709,12 @@ public class MainEditor extends javax.swing.JFrame {
                 .addGroup(jPanel14Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton13)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jTabbedPane2.addTab("PNG", jPanel14);
 
-        jLabel16.setText("GIF Files :");
+        jLabel16.setText("GIF File :");
 
         jTextField16.setText(".\\portrait00.gif");
         jTextField16.addActionListener(new java.awt.event.ActionListener() {
@@ -736,7 +749,7 @@ public class MainEditor extends javax.swing.JFrame {
                     .addGroup(jPanel17Layout.createSequentialGroup()
                         .addComponent(jLabel16)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTextField16, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+                        .addComponent(jTextField16, javax.swing.GroupLayout.DEFAULT_SIZE, 334, Short.MAX_VALUE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton28))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel17Layout.createSequentialGroup()
@@ -756,7 +769,7 @@ public class MainEditor extends javax.swing.JFrame {
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton16)
                     .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(35, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jTabbedPane2.addTab("GIF", jPanel17);
@@ -772,15 +785,15 @@ public class MainEditor extends javax.swing.JFrame {
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
+            .addComponent(jTabbedPane2)
         );
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
-            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 442, Short.MAX_VALUE)
+            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
+            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 500, Short.MAX_VALUE)
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -828,7 +841,7 @@ public class MainEditor extends javax.swing.JFrame {
             .addComponent(jPanel13, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        setSize(new java.awt.Dimension(1133, 573));
+        setSize(new java.awt.Dimension(932, 689));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -855,124 +868,8 @@ public class MainEditor extends javax.swing.JFrame {
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
         portraitManager.exportPng(jTextField15.getText());
+        setupPortraitLayout();
     }//GEN-LAST:event_jButton13ActionPerformed
-
-    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        portraitManager.importPng(jTextField11.getText());
-        jPanel2.removeAll();
-        Tile[] tiles = portraitManager.getTiles();        
-        jPanel2.setLayout(new GridLayout(1,1));
-        portraitLayout = new PortraitLayout();
-        portraitLayout.setTiles(tiles);
-        eyeTable = new PortraitTableModel(portraitManager.getPortrait().getEyeTiles(),portraitLayout);
-        mouthTable = new PortraitTableModel(portraitManager.getPortrait().getMouthTiles(),portraitLayout);
-        jPanel2.add(portraitLayout);
-        jPanel2.setSize(portraitLayout.getWidth(), portraitLayout.getHeight());
-        jPanel2.revalidate();
-        jPanel2.repaint();  
-        eyeTable = new PortraitTableModel(portraitManager.getPortrait().getEyeTiles(),portraitLayout);
-        mouthTable = new PortraitTableModel(portraitManager.getPortrait().getMouthTiles(),portraitLayout);
-        jTable1.setModel(eyeTable);
-        jTable1.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
-            private int selectedRow = -1;
-            @Override
-            public void valueChanged(ListSelectionEvent event) {
-                if(selectedRow!=jTable1.getSelectedRow()){
-                    selectedRow = jTable1.getSelectedRow();
-                    portraitLayout.setSelectedEyeTile(selectedRow);
-                    portraitLayout.updateDisplay();
-                    jPanel2.revalidate();
-                    jPanel2.repaint();
-                }
-            }
-        });         
-        jTable2.setModel(mouthTable);
-        jTable2.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
-            private int selectedRow = -1;
-            @Override
-            public void valueChanged(ListSelectionEvent event) {
-                if(selectedRow!=jTable2.getSelectedRow()){
-                    selectedRow = jTable2.getSelectedRow();
-                    portraitLayout.setSelectedMouthTile(selectedRow);
-                    portraitLayout.updateDisplay();
-                    jPanel2.revalidate();
-                    jPanel2.repaint();
-                }
-            }
-        });      
-        portraitLayout.setEyeAnimTable(eyeTable);
-        portraitLayout.setMouthAnimTable(mouthTable);
-    }//GEN-LAST:event_jButton12ActionPerformed
-
-    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
-        int returnVal = jFileChooser1.showOpenDialog(this);
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            File file = jFileChooser1.getSelectedFile();
-            jTextField11.setText(file.getAbsolutePath());
-        }
-    }//GEN-LAST:event_jButton17ActionPerformed
-
-    private void jTextField11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField11ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField11ActionPerformed
-
-    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
-        portraitManager.importDisassembly(jTextField9.getText());
-        jPanel2.removeAll();
-        Tile[] tiles = portraitManager.getTiles();        
-        jPanel2.setLayout(new GridLayout(1,1));
-        portraitLayout = new PortraitLayout();
-        portraitLayout.setTiles(tiles);
-        jPanel2.add(portraitLayout);
-        jPanel2.setSize(portraitLayout.getWidth(), portraitLayout.getHeight());
-        jPanel2.revalidate();
-        jPanel2.repaint();   
-        eyeTable = new PortraitTableModel(portraitManager.getPortrait().getEyeTiles(),portraitLayout);
-        mouthTable = new PortraitTableModel(portraitManager.getPortrait().getMouthTiles(),portraitLayout);
-        jTable1.setModel(eyeTable);
-        jTable1.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
-            private int selectedRow = -1;
-            @Override
-            public void valueChanged(ListSelectionEvent event) {
-                if(selectedRow!=jTable1.getSelectedRow()){
-                    selectedRow = jTable1.getSelectedRow();
-                    portraitLayout.setSelectedEyeTile(selectedRow);
-                    portraitLayout.updateDisplay();
-                    jPanel2.revalidate();
-                    jPanel2.repaint();
-                }
-            }
-        });         
-        jTable2.setModel(mouthTable);
-        jTable2.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
-            private int selectedRow = -1;
-            @Override
-            public void valueChanged(ListSelectionEvent event) {
-                if(selectedRow!=jTable2.getSelectedRow()){
-                    selectedRow = jTable2.getSelectedRow();
-                    portraitLayout.setSelectedMouthTile(selectedRow);
-                    portraitLayout.updateDisplay();
-                    jPanel2.revalidate();
-                    jPanel2.repaint();
-                }
-            }
-        });      
-        portraitLayout.setEyeAnimTable(eyeTable);
-        portraitLayout.setMouthAnimTable(mouthTable);
-        
-    }//GEN-LAST:event_jButton18ActionPerformed
-
-    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField9ActionPerformed
-
-    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-        int returnVal = jFileChooser1.showOpenDialog(this);
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            File file = jFileChooser1.getSelectedFile();
-            jTextField9.setText(file.getAbsolutePath());
-        }
-    }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jTextField13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField13ActionPerformed
         // TODO add your handling code here:
@@ -985,65 +882,6 @@ public class MainEditor extends javax.swing.JFrame {
             jTextField13.setText(file.getAbsolutePath());
         }
     }//GEN-LAST:event_jButton20ActionPerformed
-
-    private void jTextField12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField12ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField12ActionPerformed
-
-    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
-        int returnVal = jFileChooser1.showOpenDialog(this);
-        if (returnVal == JFileChooser.APPROVE_OPTION) {
-            File file = jFileChooser1.getSelectedFile();
-            jTextField12.setText(file.getAbsolutePath());
-        }
-    }//GEN-LAST:event_jButton19ActionPerformed
-
-    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        portraitManager.importGif(jTextField12.getText());
-        jPanel2.removeAll();
-        Tile[] tiles = portraitManager.getTiles();        
-        jPanel2.setLayout(new GridLayout(1,1));
-        portraitLayout = new PortraitLayout();
-        portraitLayout.setTiles(tiles);
-        eyeTable = new PortraitTableModel(portraitManager.getPortrait().getEyeTiles(),portraitLayout);
-        mouthTable = new PortraitTableModel(portraitManager.getPortrait().getMouthTiles(),portraitLayout);
-        jPanel2.add(portraitLayout);
-        jPanel2.setSize(portraitLayout.getWidth(), portraitLayout.getHeight());
-        jPanel2.revalidate();
-        jPanel2.repaint();  
-        eyeTable = new PortraitTableModel(portraitManager.getPortrait().getEyeTiles(),portraitLayout);
-        mouthTable = new PortraitTableModel(portraitManager.getPortrait().getMouthTiles(),portraitLayout);
-        jTable1.setModel(eyeTable);
-        jTable1.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
-            private int selectedRow = -1;
-            @Override
-            public void valueChanged(ListSelectionEvent event) {
-                if(selectedRow!=jTable1.getSelectedRow()){
-                    selectedRow = jTable1.getSelectedRow();
-                    portraitLayout.setSelectedEyeTile(selectedRow);
-                    portraitLayout.updateDisplay();
-                    jPanel2.revalidate();
-                    jPanel2.repaint();
-                }
-            }
-        });         
-        jTable2.setModel(mouthTable);
-        jTable2.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
-            private int selectedRow = -1;
-            @Override
-            public void valueChanged(ListSelectionEvent event) {
-                if(selectedRow!=jTable2.getSelectedRow()){
-                    selectedRow = jTable2.getSelectedRow();
-                    portraitLayout.setSelectedMouthTile(selectedRow);
-                    portraitLayout.updateDisplay();
-                    jPanel2.revalidate();
-                    jPanel2.repaint();
-                }
-            }
-        });      
-        portraitLayout.setEyeAnimTable(eyeTable);
-        portraitLayout.setMouthAnimTable(mouthTable);
-    }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jTextField16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField16ActionPerformed
         // TODO add your handling code here:
@@ -1113,6 +951,114 @@ public class MainEditor extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jCheckBox3ActionPerformed
 
+    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
+        if (portraitLayout != null) {
+            portraitLayout.setDisplaySize(jComboBox1.getSelectedIndex()+1);
+            jPanel2.revalidate();
+            jPanel2.repaint();  
+        }
+    }//GEN-LAST:event_jComboBox1ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        portraitManager.importGif(jTextField12.getText());
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
+        int returnVal = jFileChooser1.showOpenDialog(this);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File file = jFileChooser1.getSelectedFile();
+            jTextField12.setText(file.getAbsolutePath());
+        }
+    }//GEN-LAST:event_jButton19ActionPerformed
+
+    private void jTextField12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField12ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField12ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        portraitManager.importPng(jTextField11.getText());
+        setupPortraitLayout();
+    }//GEN-LAST:event_jButton12ActionPerformed
+
+    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+        int returnVal = jFileChooser1.showOpenDialog(this);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File file = jFileChooser1.getSelectedFile();
+            jTextField11.setText(file.getAbsolutePath());
+        }
+    }//GEN-LAST:event_jButton17ActionPerformed
+
+    private void jTextField11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField11ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        int returnVal = jFileChooser1.showOpenDialog(this);
+        if (returnVal == JFileChooser.APPROVE_OPTION) {
+            File file = jFileChooser1.getSelectedFile();
+            jTextField9.setText(file.getAbsolutePath());
+        }
+    }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField9ActionPerformed
+
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+        portraitManager.importDisassembly(jTextField9.getText());
+        setupPortraitLayout();
+    }//GEN-LAST:event_jButton18ActionPerformed
+
+    private void setupPortraitLayout() {
+        jPanel2.removeAll();
+        Tile[] tiles = portraitManager.getTiles();
+        jPanel2.setLayout(new GridLayout(1,1));
+        portraitLayout = new PortraitLayout();
+        portraitLayout.setTiles(tiles);
+        eyeTable = new PortraitTableModel(portraitManager.getPortrait().getEyeTiles(),portraitLayout);
+        mouthTable = new PortraitTableModel(portraitManager.getPortrait().getMouthTiles(),portraitLayout);
+        jCheckBox1.setSelected(false);
+        jCheckBox2.setSelected(false);
+        portraitLayout.setDrawGrid(jCheckBox3.isSelected());
+        portraitLayout.setDisplaySize(jComboBox1.getSelectedIndex()+1);
+        jPanel2.add(portraitLayout);
+        jPanel2.setSize(portraitLayout.getWidth(), portraitLayout.getHeight());
+        jPanel2.revalidate();
+        jPanel2.repaint();
+        eyeTable = new PortraitTableModel(portraitManager.getPortrait().getEyeTiles(),portraitLayout);
+        mouthTable = new PortraitTableModel(portraitManager.getPortrait().getMouthTiles(),portraitLayout);
+        jTable1.setModel(eyeTable);
+        jTable1.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+            private int selectedRow = -1;
+            @Override
+            public void valueChanged(ListSelectionEvent event) {
+                if(selectedRow!=jTable1.getSelectedRow()){
+                    selectedRow = jTable1.getSelectedRow();
+                    portraitLayout.setSelectedEyeTile(selectedRow);
+                    portraitLayout.updateDisplay();
+                    jPanel2.revalidate();
+                    jPanel2.repaint();
+                }
+            }
+        });
+        jTable2.setModel(mouthTable);
+        jTable2.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+            private int selectedRow = -1;
+            @Override
+            public void valueChanged(ListSelectionEvent event) {
+                if(selectedRow!=jTable2.getSelectedRow()){
+                    selectedRow = jTable2.getSelectedRow();
+                    portraitLayout.setSelectedMouthTile(selectedRow);
+                    portraitLayout.updateDisplay();
+                    jPanel2.revalidate();
+                    jPanel2.repaint();
+                }
+            }
+        });
+        portraitLayout.setEyeAnimTable(eyeTable);
+        portraitLayout.setMouthAnimTable(mouthTable);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -1174,6 +1120,7 @@ public class MainEditor extends javax.swing.JFrame {
     private javax.swing.JCheckBox jCheckBox1;
     private javax.swing.JCheckBox jCheckBox2;
     private javax.swing.JCheckBox jCheckBox3;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JFileChooser jFileChooser2;
     private javax.swing.JLabel jLabel1;
