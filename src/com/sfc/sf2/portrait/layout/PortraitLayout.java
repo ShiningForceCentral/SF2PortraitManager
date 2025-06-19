@@ -44,7 +44,7 @@ public class PortraitLayout extends JPanel  implements MouseListener, MouseMotio
     private BufferedImage currentImage = null;
     private BufferedImage selectedTileImage = null;
     
-    private int currentDisplaySize = 2;
+    private int displaySize = 2;
     
     
     public PortraitLayout() {
@@ -105,36 +105,37 @@ public class PortraitLayout extends JPanel  implements MouseListener, MouseMotio
                 }
             }
             if(!pngExport){
+                graphics.dispose();
+                currentImage = resize(currentImage);
+                graphics = currentImage.getGraphics();
                 if (drawGrid) {
                     for (int i = 0; i < 8; i++) {
-                        BufferedImage img = new BufferedImage(8*8, 8*8, BufferedImage.TYPE_INT_ARGB);
+                        BufferedImage img = new BufferedImage(8*8*displaySize, 8*8*displaySize, BufferedImage.TYPE_INT_ARGB);
                         Graphics2D g2 = (Graphics2D) img.getGraphics();
                         g2.setColor(Color.BLACK);
                         g2.setStroke(new BasicStroke(1));
-                        g2.drawLine(0, i*8, 8*8, i*8);
-                        g2.drawRect(i*8, 0, i*8, 8*8);
+                        g2.drawLine(0, i*8*displaySize, 8*8*displaySize, i*8*displaySize);
+                        g2.drawRect(i*8*displaySize, 0, i*8*displaySize, 8*8*displaySize);
                         graphics.drawImage(img, 0, 0, null);
                         g2.dispose();
                     }
-                }                
+                }
                 if(selectedEyeTile>=0){
                     graphics.drawImage(getSelectedTileImage(eyeAnimTable, selectedEyeTile),0,0,null);
                 }
                 if(selectedMouthTile>=0){
                     graphics.drawImage(getSelectedTileImage(mouthAnimTable, selectedMouthTile),0,0,null);
-                }
+                } 
             }
             graphics.dispose();
             redraw = false;
-            if (!pngExport)
-                currentImage = resize(currentImage);
         }
         return currentImage;
     }
     
     private BufferedImage getSelectedTileImage(PortraitTableModel table, int index){
         if(selectedTileImage==null){
-            selectedTileImage = new BufferedImage(8*8, 8*8, BufferedImage.TYPE_INT_ARGB);
+            selectedTileImage = new BufferedImage(8*8*displaySize, 8*8*displaySize, BufferedImage.TYPE_INT_ARGB);
             Graphics2D g2 = (Graphics2D) selectedTileImage.getGraphics(); 
             int x1 = table.getTableData()[index][0];
             int y1 = table.getTableData()[index][1];
@@ -142,8 +143,8 @@ public class PortraitLayout extends JPanel  implements MouseListener, MouseMotio
             int y2 = table.getTableData()[index][3];
             g2.setColor(Color.WHITE);
             g2.setStroke(new BasicStroke(1));
-            g2.drawRect(x1*8, y1*8, 8, 8);
-            g2.drawRect(x2*8, y2*8, 8, 8);
+            g2.drawRect(x1*8*displaySize, y1*8*displaySize, 8*displaySize, 8*displaySize);
+            g2.drawRect(x2*8*displaySize, y2*8*displaySize, 8*displaySize, 8*displaySize);
         }
         return selectedTileImage;
     }
@@ -168,14 +169,14 @@ public class PortraitLayout extends JPanel  implements MouseListener, MouseMotio
     } 
     
     public void resize(int size){
-        this.currentDisplaySize = size;
+        this.displaySize = size;
         currentImage = resize(currentImage);
     }
     
     private BufferedImage resize(BufferedImage image){
-        BufferedImage newImage = new BufferedImage(image.getWidth()*currentDisplaySize, image.getHeight()*currentDisplaySize, BufferedImage.TYPE_INT_ARGB);
+        BufferedImage newImage = new BufferedImage(image.getWidth()*displaySize, image.getHeight()*displaySize, BufferedImage.TYPE_INT_ARGB);
         Graphics g = newImage.getGraphics();
-        g.drawImage(image, 0, 0, image.getWidth()*currentDisplaySize, image.getHeight()*currentDisplaySize, null);
+        g.drawImage(image, 0, 0, image.getWidth()*displaySize, image.getHeight()*displaySize, null);
         g.dispose();
         return newImage;
     }        
@@ -187,6 +188,18 @@ public class PortraitLayout extends JPanel  implements MouseListener, MouseMotio
     
         public Tile[] getTiles() {
         return tiles;
+    }
+    
+    public int getDisplaySize() {
+        return displaySize;
+    }
+
+    public void setDisplaySize(int displaySize) {
+        if (this.displaySize != displaySize) {
+            this.displaySize = displaySize;
+            selectedTileImage = null;
+            redraw = true;
+        }
     }
 
     public void setTiles(Tile[] tiles) {
@@ -242,7 +255,6 @@ public class PortraitLayout extends JPanel  implements MouseListener, MouseMotio
     public void setBlinking(boolean blinking) {
         if (this.blinking != blinking) {
             this.blinking = blinking;
-            currentImage = null;
             redraw = true;
         }
     }
@@ -254,7 +266,6 @@ public class PortraitLayout extends JPanel  implements MouseListener, MouseMotio
     public void setSpeaking(boolean speaking) {
         if (this.speaking != speaking) {
             this.speaking = speaking;
-            currentImage = null;
             redraw = true;
         }
     }
@@ -284,8 +295,8 @@ public class PortraitLayout extends JPanel  implements MouseListener, MouseMotio
     }
     @Override
     public void mousePressed(MouseEvent e) {
-        int x = e.getX() / (currentDisplaySize * 8);
-        int y = e.getY() / (currentDisplaySize * 8);  
+        int x = e.getX() / (displaySize * 8);
+        int y = e.getY() / (displaySize * 8);  
         switch (e.getButton()) {
             case MouseEvent.BUTTON1:
                 if(selectedEyeTile>=0){
