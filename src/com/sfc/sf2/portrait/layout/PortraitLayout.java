@@ -114,6 +114,7 @@ public class PortraitLayout extends JPanel  implements MouseListener, MouseMotio
                         g2.drawLine(0, i*8, 8*8, i*8);
                         g2.drawRect(i*8, 0, i*8, 8*8);
                         graphics.drawImage(img, 0, 0, null);
+                        g2.dispose();
                     }
                 }                
                 if(selectedEyeTile>=0){
@@ -123,8 +124,10 @@ public class PortraitLayout extends JPanel  implements MouseListener, MouseMotio
                     graphics.drawImage(getSelectedTileImage(mouthAnimTable, selectedMouthTile),0,0,null);
                 }
             }
+            graphics.dispose();
             redraw = false;
-            currentImage = resize(currentImage);
+            if (!pngExport)
+                currentImage = resize(currentImage);
         }
         return currentImage;
     }
