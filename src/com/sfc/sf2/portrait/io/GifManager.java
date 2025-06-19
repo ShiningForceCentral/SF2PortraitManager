@@ -141,7 +141,7 @@ public class GifManager {
     public static void writeGifFile(Tile[] tiles, String filepath){
         try {
             System.out.println("com.sfc.sf2.portrait.io.GifManager.exportGif() - Exporting GIF file ...");
-            BufferedImage image = PortraitLayout.buildImage(tiles, 8, true);
+            BufferedImage image = new PortraitLayout().buildImage(tiles, 8, true);
             File outputfile = new File(filepath);
             System.out.println("File path : "+outputfile.getAbsolutePath());
             ImageIO.write(image, "gif", outputfile);

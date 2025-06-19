@@ -96,7 +96,7 @@ public class DisassemblyManager {
             if(f.getName().endsWith(".bin")){
                 System.out.println("Importing "+f.getAbsolutePath()+" ...");
                 Portrait portrait = importDisassembly(f.getAbsolutePath());
-                portrait.setImage(PortraitLayout.buildImage(portrait.getTiles(), 8, true));
+                portrait.setImage(new PortraitLayout().buildImage(portrait.getTiles(), 8, true));
                 portraitList.add(portrait);
             }
                 
@@ -136,7 +136,7 @@ public class DisassemblyManager {
                 String filePath = basepath + filepaths.get(i);
                 System.out.println("Importing "+filePath+" ...");
                 Portrait portrait = importDisassembly(filePath);
-                portrait.setImage(PortraitLayout.buildImage(portrait.getTiles(), 8, true));
+                portrait.setImage(new PortraitLayout().buildImage(portrait.getTiles(), 8, true));
                 portraitList.add(portrait);
             }
         }catch(Exception e){
