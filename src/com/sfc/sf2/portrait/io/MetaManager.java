@@ -22,19 +22,19 @@ import java.util.logging.Logger;
  */
 public class MetaManager {
     
-    public static void importMetadata(Portrait portrait, String metadataPath){
-        try{
+    public static void importMetadata(Portrait portrait, String metadataPath) {
+        try {
             System.out.println("com.sfc.sf2.portrait.io.MetaManager.importMetadata() - Importing Meta file ...");
             loadMetadataFile(portrait, metadataPath);
             System.out.println("com.sfc.sf2.portrait.io.MetaManager.importMetadata() - Meta file imported.");
-        }catch(Exception e){
+        } catch (Exception e) {
              System.err.println("com.sfc.sf2.portrait.io.MetaManager.importMetadata() - Error while parsing metadata : "+e+". Will load without.");
         }
     }
     
-    public static void loadMetadataFile(Portrait portrait, String filepath) throws IOException{
-        try {
+    private static void loadMetadataFile(Portrait portrait, String filepath) throws IOException {
             System.out.println("com.sfc.sf2.portrait.io.MetaManager.loadMetadataFile() - Importing meta file ...");
+        try {
             File inputfile = new File(filepath);
             System.out.println("File path : "+inputfile.getAbsolutePath());
             BufferedReader reader = new BufferedReader(new FileReader(inputfile, Charset.defaultCharset()));
@@ -62,7 +62,7 @@ public class MetaManager {
             portrait.setMouthTiles(mouthTiles);
             reader.close();
             System.out.println("Meta file imported : " + inputfile.getAbsolutePath());
-        }catch(Exception e){
+        } catch (Exception e) {
              System.err.println("com.sfc.sf2.portrait.io.MetaManager.importMetaFile() - Error while parsing metadata : "+e);
              throw e;
         }              
@@ -76,11 +76,11 @@ public class MetaManager {
         } catch (Exception ex) {
             Logger.getLogger(PngManager.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }    
+    }
     
-    public static void writeMetadataFile(int[][] eyeTiles, int[][] mouthTiles, String filepath){
-        try {
+    private static void writeMetadataFile(int[][] eyeTiles, int[][] mouthTiles, String filepath) {
             System.out.println("com.sfc.sf2.portrait.io.MetaManager.writeMetadataFile() - Exporting meta file ...");
+        try {
             StringBuilder sb = new StringBuilder();
             sb.append(String.format("Eyes: %s\n", eyeTiles.length));
             for (int i = 0; i < eyeTiles.length; i++) {
@@ -99,6 +99,6 @@ public class MetaManager {
             System.out.println("Meta file exported : " + outputfile.getAbsolutePath());
         } catch (Exception ex) {
             Logger.getLogger(MetaManager.class.getName()).log(Level.SEVERE, null, ex);
-        }       
+        }
     }
 }
