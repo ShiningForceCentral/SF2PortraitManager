@@ -101,7 +101,7 @@ public class PortraitLayout extends JPanel  implements MouseListener, MouseMotio
                             }
                         }
                     }
-                    graphics.drawImage(tiles[tileID].getImage(), i*8, j*8, null);
+                    graphics.drawImage(tiles[tileID].getIndexedColorImage(), i*8, j*8, null);
                 }
             }
             if(!pngExport){
