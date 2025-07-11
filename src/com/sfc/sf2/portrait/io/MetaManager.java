@@ -37,7 +37,7 @@ public class MetaManager {
         try {
             File inputfile = new File(filepath);
             System.out.println("File path : "+inputfile.getAbsolutePath());
-            BufferedReader reader = new BufferedReader(new FileReader(inputfile, Charset.defaultCharset()));
+            BufferedReader reader = new BufferedReader(new FileReader(inputfile));
             String data = reader.readLine();
             int eyesCount = Integer.parseInt(data.split(":")[1].trim());
             int[][] eyeTiles = new int[eyesCount][4];
@@ -93,7 +93,7 @@ public class MetaManager {
                         
             File outputfile = new File(filepath);
             System.out.println("File path : "+outputfile.getAbsolutePath());
-            FileWriter writer = new FileWriter(outputfile, Charset.defaultCharset(), false);
+            FileWriter writer = new FileWriter(outputfile, false);
             writer.write(sb.toString());
             writer.close();
             System.out.println("Meta file exported : " + outputfile.getAbsolutePath());
