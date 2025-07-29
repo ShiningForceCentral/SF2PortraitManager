@@ -6,6 +6,7 @@
 package com.sfc.sf2.portrait;
 
 import com.sfc.sf2.graphics.Tile;
+import com.sfc.sf2.palette.Palette;
 import java.awt.image.BufferedImage;
 
 /**
@@ -45,14 +46,11 @@ public class Portrait {
     public void setMouthTiles(int[][] mouthTiles) {
         this.mouthTiles = mouthTiles;
     }
-
-    public BufferedImage getImage() {
-        return image;
-    }
-
-    public void setImage(BufferedImage image) {
-        this.image = image;
-    }
     
-    
+    public Palette getPalette() {
+        if (tiles == null || tiles.length == 0) {
+            return null;
+        }
+        return tiles[0].getPalette();
+    }
 }

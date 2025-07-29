@@ -8,9 +8,6 @@ package com.sfc.sf2.portrait;
 import com.sfc.sf2.graphics.GraphicsManager;
 import com.sfc.sf2.graphics.Tile;
 import com.sfc.sf2.portrait.io.DisassemblyManager;
-import com.sfc.sf2.portrait.io.PngManager;
-import com.sfc.sf2.portrait.io.GifManager;
-import com.sfc.sf2.palette.PaletteManager;
 import com.sfc.sf2.portrait.io.MetaManager;
 
 /**
@@ -19,13 +16,13 @@ import com.sfc.sf2.portrait.io.MetaManager;
  */
 public class PortraitManager {
        
-    private PaletteManager paletteManager = new PaletteManager();
-    private GraphicsManager graphicsManager = new GraphicsManager();
+    private final GraphicsManager graphicsManager = new GraphicsManager();
     private Tile[] tiles;
-    private Portrait portrait = new Portrait();
+    private Portrait portrait;
        
     public void importDisassembly(String filePath){
         System.out.println("com.sfc.sf2.portrait.PortraitManager.importDisassembly() - Importing disassembly ...");
+        portrait = new Portrait();
         portrait = DisassemblyManager.importDisassembly(filePath);
         this.tiles = portrait.getTiles();
         graphicsManager.setTiles(portrait.getTiles());
@@ -55,7 +52,9 @@ public class PortraitManager {
     
     public void importPng(String filepath, String metadataPath){
         System.out.println("com.sfc.sf2.portrait.PortraitManager.importPng() - Importing PNG ...");
-        portrait.setTiles(PngManager.importPng(filepath).getTiles());
+        Tile[] tiles = com.sfc.sf2.graphics.io.RawImageManager.importImage(filepath);
+        portrait = new Portrait();
+        portrait.setTiles(tiles);
         MetaManager.importMetadata(portrait, getMetadataFullPath(filepath, metadataPath));
         this.tiles = portrait.getTiles();
         graphicsManager.setTiles(portrait.getTiles());
@@ -64,14 +63,16 @@ public class PortraitManager {
     
     public void exportPng(String filepath, String metadataPath){
         System.out.println("com.sfc.sf2.portrait.PortraitManager.exportPng() - Exporting PNG ...");
-        PngManager.exportPng(portrait, filepath);
+        com.sfc.sf2.graphics.io.RawImageManager.exportImage(portrait.getTiles(), filepath, 8, com.sfc.sf2.graphics.io.RawImageManager.FILE_FORMAT_PNG);
         MetaManager.exportMetadata(portrait, getMetadataFullPath(filepath, metadataPath));
         System.out.println("com.sfc.sf2.portrait.PortraitManager.exportPng() - PNG exported.");       
     }
     
     public void importGif(String filepath, String metadataPath){
         System.out.println("com.sfc.sf2.portrait.PortraitManager.importGif() - Importing GIF ...");
-        portrait.setTiles(GifManager.importGif(filepath).getTiles());
+        Tile[] tiles = com.sfc.sf2.graphics.io.RawImageManager.importImage(filepath);
+        portrait = new Portrait();
+        portrait.setTiles(tiles);
         MetaManager.importMetadata(portrait, getMetadataFullPath(filepath, metadataPath));
         this.tiles = portrait.getTiles();
         graphicsManager.setTiles(portrait.getTiles());
@@ -80,7 +81,7 @@ public class PortraitManager {
     
     public void exportGif(String filepath, String metadataPath){
         System.out.println("com.sfc.sf2.portrait.PortraitManager.exportGif() - Exporting GIF ...");
-        GifManager.exportGif(portrait, filepath);
+        com.sfc.sf2.graphics.io.RawImageManager.exportImage(portrait.getTiles(), filepath, 8, com.sfc.sf2.graphics.io.RawImageManager.FILE_FORMAT_GIF);
         MetaManager.exportMetadata(portrait, getMetadataFullPath(filepath, metadataPath));
         System.out.println("com.sfc.sf2.portrait.PortraitManager.exportGif() - GIF exported.");       
     }

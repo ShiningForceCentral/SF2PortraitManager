@@ -74,7 +74,7 @@ public class MetaManager {
             writeMetadataFile(portrait.getEyeTiles(), portrait.getMouthTiles(), metadataPath);
             System.out.println("com.sfc.sf2.portrait.io.MetaManager.exportMetadata() - Meta file exported.");
         } catch (Exception ex) {
-            Logger.getLogger(PngManager.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(MetaManager.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     

@@ -39,13 +39,12 @@ public class PortraitLayout extends JPanel  implements MouseListener, MouseMotio
     private int selectedEyeTile = -1;
     private int selectedMouthTile = -1;
     
-    private boolean drawGrid = false;
+    private boolean showGrid = false;
     private boolean redraw = true;
     private BufferedImage currentImage = null;
     private BufferedImage selectedTileImage = null;
     
     private int displaySize = 2;
-    
     
     public PortraitLayout() {
         addMouseListener(this);
@@ -58,128 +57,96 @@ public class PortraitLayout extends JPanel  implements MouseListener, MouseMotio
         g.drawImage(buildImage(), 0, 0, this);       
     }
     
-    public void updateDisplay(){
-        selectedTileImage = null;
-        this.redraw = true;
-    }
-    
     public BufferedImage buildImage(){
-        BufferedImage image = buildImage(this.tiles,this.tilesPerRow, false);
-        setSize(image.getWidth(), image.getHeight());
-        return image;
-    }
-    
-    public BufferedImage buildImage(Tile[] tiles, int tilesPerRow, boolean pngExport){
-        int imageHeight = (tiles.length/tilesPerRow)*8;
-        if(tiles.length%tilesPerRow!=0){
-            imageHeight+=8;
-        }
-        if(redraw || pngExport){
-            IndexColorModel icm = buildIndexColorModel(tiles[0].getPalette());
-            currentImage = new BufferedImage(tilesPerRow*8, imageHeight , BufferedImage.TYPE_BYTE_BINARY, icm);
-            Graphics graphics = currentImage.getGraphics();     
-            for(int i=0;i<8;i++){
-                for(int j=0;j<8;j++){
-                    int tileID = i+j*8;
-                    if (!pngExport) {
-                        if (blinking) {
-                            int[][] eyeTableData = eyeAnimTable.getTableData();
-                            for (int b = 0; b < eyeTableData.length; b++) {
-                                if (eyeTableData[b][0] == i && eyeTableData[b][1] == j) {
-                                    tileID = eyeTableData[b][2]+eyeTableData[b][3]*8;
-                                    break;
-                                }
-                            }
-                        }
-                        if (speaking) {
-                            int[][] mouthTableData = mouthAnimTable.getTableData();
-                            for (int m = 0; m < mouthTableData.length; m++) {
-                                if (mouthTableData[m][0] == i && mouthTableData[m][1] == j) {
-                                    tileID = mouthTableData[m][2]+mouthTableData[m][3]*8;
-                                    break;
-                                }
-                            }
-                        }
-                    }
-                    graphics.drawImage(tiles[tileID].getImage(), i*8, j*8, null);
-                }
+        if (redraw) {
+            if (tiles == null || tiles.length == 0) {
+                currentImage = null;
+            } else {
+                currentImage = buildImage(this.tiles,this.tilesPerRow);
+                setSize(currentImage.getWidth(), currentImage.getHeight());
+                if (showGrid) { drawGrid(currentImage); }
             }
-            if(!pngExport){
-                graphics.dispose();
-                currentImage = resize(currentImage);
-                graphics = currentImage.getGraphics();
-                if (drawGrid) {
-                    for (int i = 0; i < 8; i++) {
-                        BufferedImage img = new BufferedImage(8*8*displaySize, 8*8*displaySize, BufferedImage.TYPE_INT_ARGB);
-                        Graphics2D g2 = (Graphics2D) img.getGraphics();
-                        g2.setColor(Color.BLACK);
-                        g2.setStroke(new BasicStroke(1));
-                        g2.drawLine(0, i*8*displaySize, 8*8*displaySize, i*8*displaySize);
-                        g2.drawRect(i*8*displaySize, 0, i*8*displaySize, 8*8*displaySize);
-                        graphics.drawImage(img, 0, 0, null);
-                        g2.dispose();
-                    }
-                }
-                if(selectedEyeTile>=0){
-                    graphics.drawImage(getSelectedTileImage(eyeAnimTable, selectedEyeTile),0,0,null);
-                }
-                if(selectedMouthTile>=0){
-                    graphics.drawImage(getSelectedTileImage(mouthAnimTable, selectedMouthTile),0,0,null);
-                } 
-            }
-            graphics.dispose();
             redraw = false;
         }
         return currentImage;
     }
     
-    private BufferedImage getSelectedTileImage(PortraitTableModel table, int index){
-        if(selectedTileImage==null){
-            selectedTileImage = new BufferedImage(8*8*displaySize, 8*8*displaySize, BufferedImage.TYPE_INT_ARGB);
-            Graphics2D g2 = (Graphics2D) selectedTileImage.getGraphics(); 
-            int x1 = table.getTableData()[index][0];
-            int y1 = table.getTableData()[index][1];
-            int x2 = table.getTableData()[index][2];
-            int y2 = table.getTableData()[index][3];
-            g2.setColor(Color.WHITE);
-            g2.setStroke(new BasicStroke(1));
-            g2.drawRect(x1*8*displaySize, y1*8*displaySize, 8*displaySize, 8*displaySize);
-            g2.drawRect(x2*8*displaySize, y2*8*displaySize, 8*displaySize, 8*displaySize);
+    public BufferedImage buildImage(Tile[] tiles, int tilesPerRow){
+        int imageHeight = (tiles.length/tilesPerRow)*8;
+        if(tiles.length%tilesPerRow!=0){
+            imageHeight+=8;
         }
-        return selectedTileImage;
+        if(redraw){
+            currentImage = new BufferedImage(tilesPerRow*8, imageHeight , BufferedImage.TYPE_INT_ARGB);
+            Graphics graphics = currentImage.getGraphics();
+            for(int i=0;i<8;i++){
+                for(int j=0;j<8;j++){
+                    int tileID = i+j*8;
+                    if (blinking) {
+                        int[][] eyeTableData = eyeAnimTable.getTableData();
+                        for (int b = 0; b < eyeTableData.length; b++) {
+                            if (eyeTableData[b][0] == i && eyeTableData[b][1] == j) {
+                                tileID = eyeTableData[b][2]+eyeTableData[b][3]*8;
+                                break;
+                            }
+                        }
+                    }
+                    if (speaking) {
+                        int[][] mouthTableData = mouthAnimTable.getTableData();
+                        for (int m = 0; m < mouthTableData.length; m++) {
+                            if (mouthTableData[m][0] == i && mouthTableData[m][1] == j) {
+                                tileID = mouthTableData[m][2]+mouthTableData[m][3]*8;
+                                break;
+                            }
+                        }
+                    }
+                    graphics.drawImage(tiles[tileID].getIndexedColorImage(), i*8, j*8, null);
+                }
+            }
+            redraw = false;
+        }
+        currentImage = resize(currentImage);
+        return currentImage;
     }
     
-    private static IndexColorModel buildIndexColorModel(Color[] colors){
-        byte[] reds = new byte[16];
-        byte[] greens = new byte[16];
-        byte[] blues = new byte[16];
-        byte[] alphas = new byte[16];
-        reds[0] = (byte)0xFF;
-        greens[0] = (byte)0xFF;
-        blues[0] = (byte)0xFF;
-        alphas[0] = 0;
-        for(int i=1;i<16;i++){
-            reds[i] = (byte)colors[i].getRed();
-            greens[i] = (byte)colors[i].getGreen();
-            blues[i] = (byte)colors[i].getBlue();
-            alphas[i] = (byte)0xFF;
+    private void drawGrid(BufferedImage image) {
+        Graphics graphics = image.getGraphics();
+        graphics.setColor(Color.BLACK);
+        int x = 0;
+        int y = 0;
+        while (x < image.getWidth()) {
+            graphics.drawLine(x, 0, x, image.getHeight());
+            x += 8*displaySize;
         }
-        IndexColorModel icm = new IndexColorModel(4,16,reds,greens,blues,alphas);
-        return icm;
-    } 
+        graphics.drawLine(x-1, 0, x-1, image.getHeight());
+        while (y < image.getHeight()) {
+            graphics.drawLine(0, y, image.getWidth(), y);
+            y += 8*displaySize;
+        }
+        graphics.drawLine(0, y-1, image.getWidth(), y-1);
+        graphics.dispose();
+    }
     
     public void resize(int size){
         this.displaySize = size;
         currentImage = resize(currentImage);
+        this.redraw = true;
     }
     
     private BufferedImage resize(BufferedImage image){
+        if (displaySize == 1)
+            return image;
         BufferedImage newImage = new BufferedImage(image.getWidth()*displaySize, image.getHeight()*displaySize, BufferedImage.TYPE_INT_ARGB);
         Graphics g = newImage.getGraphics();
         g.drawImage(image, 0, 0, image.getWidth()*displaySize, image.getHeight()*displaySize, null);
         g.dispose();
         return newImage;
-    }        
+    }
+    
+    public void updateDisplay(){
+        selectedTileImage = null;
+        this.redraw = true;
+    }  
     
     @Override
     public Dimension getPreferredSize() {
@@ -271,12 +238,12 @@ public class PortraitLayout extends JPanel  implements MouseListener, MouseMotio
     }
 
     public boolean getDrawGrid() {
-        return drawGrid;
+        return showGrid;
     }
 
     public void setDrawGrid(boolean drawGrid) {
-        if (this.drawGrid != drawGrid) {
-            this.drawGrid = drawGrid;
+        if (this.showGrid != drawGrid) {
+            this.showGrid = drawGrid;
             currentImage = null;
             redraw = true;
         }

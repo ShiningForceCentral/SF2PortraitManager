@@ -11,6 +11,7 @@ import com.sfc.sf2.graphics.compressed.BasicGraphicsEncoder;
 import com.sfc.sf2.portrait.Portrait;
 import com.sfc.sf2.graphics.compressed.StackGraphicsDecoder;
 import com.sfc.sf2.graphics.compressed.StackGraphicsEncoder;
+import com.sfc.sf2.palette.Palette;
 import com.sfc.sf2.palette.graphics.PaletteDecoder;
 import com.sfc.sf2.palette.graphics.PaletteEncoder;
 import com.sfc.sf2.portrait.layout.PortraitLayout;
@@ -39,7 +40,7 @@ public class DisassemblyManager {
         Portrait portrait = new Portrait();
         try{
             Tile[] tiles;
-            Color[] palette;
+            Palette palette;
             Path path = Paths.get(filepath);
             if(path.toFile().exists()){
                 byte[] data = Files.readAllBytes(path);
@@ -65,8 +66,8 @@ public class DisassemblyManager {
                     int paletteOffset = 2+eyesTileNumber*4+2+mouthTileNumber*4;
                     byte[] paletteData = new byte[32];
                     System.arraycopy(data, paletteOffset, paletteData, 0, paletteData.length);
-                    palette = PaletteDecoder.parsePalette(paletteData);
-                    palette[0] = new Color(255, 255, 255, 0);
+                    Color[] colors = PaletteDecoder.parsePalette(paletteData);
+                    palette = new Palette("Portrait Palette", colors);
                     int graphicsOffset = paletteOffset + 32;
                     byte[] tileData = new byte[data.length-graphicsOffset];
                     System.arraycopy(data, graphicsOffset, tileData, 0, tileData.length);
@@ -96,11 +97,8 @@ public class DisassemblyManager {
             if(f.getName().endsWith(".bin")){
                 System.out.println("Importing "+f.getAbsolutePath()+" ...");
                 Portrait portrait = importDisassembly(f.getAbsolutePath());
-                portrait.setImage(new PortraitLayout().buildImage(portrait.getTiles(), 8, true));
                 portraitList.add(portrait);
             }
-                
-            
         }
         portraits = new Portrait[portraitList.size()];
         portraits = portraitList.toArray(portraits);
@@ -136,7 +134,6 @@ public class DisassemblyManager {
                 String filePath = basepath + filepaths.get(i);
                 System.out.println("Importing "+filePath+" ...");
                 Portrait portrait = importDisassembly(filePath);
-                portrait.setImage(new PortraitLayout().buildImage(portrait.getTiles(), 8, true));
                 portraitList.add(portrait);
             }
         }catch(Exception e){
@@ -169,7 +166,7 @@ public class DisassemblyManager {
                     mouthTiles[2+i*4+2] = (byte)(portrait.getMouthTiles()[i][2] & 0xFF);
                     mouthTiles[2+i*4+3] = (byte)(portrait.getMouthTiles()[i][3] & 0xFF);
                 }
-                PaletteEncoder.producePalette(portrait.getTiles()[0].getPalette());
+                PaletteEncoder.producePalette(portrait.getPalette().getColors());
                 byte[] palette = PaletteEncoder.getNewPaletteFileBytes();
                 StackGraphicsEncoder.produceGraphics(portrait.getTiles());
                 byte[] tileset = StackGraphicsEncoder.getNewGraphicsFileBytes();
