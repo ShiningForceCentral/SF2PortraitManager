@@ -937,9 +937,9 @@ public class MainEditor extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
-        int returnVal = jFileChooser2.showOpenDialog(this);
+        int returnVal = jFileChooser1.showOpenDialog(this);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
-            File file = jFileChooser2.getSelectedFile();
+            File file = jFileChooser1.getSelectedFile();
             jTextField13.setText(file.getAbsolutePath());
         }
     }//GEN-LAST:event_jButton20ActionPerformed
